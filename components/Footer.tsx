@@ -3,7 +3,7 @@ import { SITE } from '@/lib/site'
 
 export default function Footer() {
   return (
-    <footer className="py-14 px-6 sm:px-10" style={{ borderTop: '1px solid rgba(139,184,138,0.08)', background: '#1a2418' }}>
+    <footer className="py-14 px-6 sm:px-10" style={{ borderTop: '1px solid rgba(139,184,138,0.08)', background: '#1a2418', position: 'relative', zIndex: 1 }}>
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5">
         <Image src="/images/logo.png" alt={SITE.name} width={120} height={30} className="h-14 w-auto" style={{ filter: 'brightness(1.5)' }} />
         <div className="flex items-center gap-4">
