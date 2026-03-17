@@ -57,15 +57,15 @@ export default function Header() {
               <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main inline-flex items-center gap-2 font-bold px-6 py-2.5 rounded-full text-xs" style={{ background: '#8bb88a', color: '#1a2418' }}>予約する</a>
             </li>
           </ul>
+          {/* ハンバーガーボタン（開く用） */}
           <button
-            className="md:hidden p-2 relative z-[60] w-10 h-10 flex flex-col items-center justify-center gap-1.5"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="メニュー"
-            aria-expanded={mobileOpen}
+            className="md:hidden p-2 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+            onClick={() => setMobileOpen(true)}
+            aria-label="メニューを開く"
           >
-            <span className={`block w-5 h-px transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-[4px]' : ''}`} style={{ background: textColor }} />
-            <span className={`block w-5 h-px transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} style={{ background: textColor }} />
-            <span className={`block h-px transition-all duration-300 ml-auto ${mobileOpen ? 'w-5 -rotate-45 -translate-y-[4px]' : 'w-3'}`} style={{ background: textColor }} />
+            <span className="block w-5 h-px" style={{ background: textColor }} />
+            <span className="block w-5 h-px" style={{ background: textColor }} />
+            <span className="block w-3 h-px ml-auto" style={{ background: textColor }} />
           </button>
         </nav>
       </header>
@@ -83,6 +83,16 @@ export default function Header() {
         }}
         aria-hidden={!mobileOpen}
       >
+        {/* ✕ 閉じるボタン — ハンバーガーと同じ位置に配置 */}
+        <button
+          className="absolute top-4 right-6 sm:right-10 p-2 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+          onClick={() => setMobileOpen(false)}
+          aria-label="メニューを閉じる"
+        >
+          <span className="block w-5 h-px rotate-45 translate-y-[3px]" style={{ background: '#f0ebe3' }} />
+          <span className="block w-5 h-px -rotate-45 -translate-y-[3px]" style={{ background: '#f0ebe3' }} />
+        </button>
+
         {navLinks.map(l => (
           <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="text-xl font-display font-bold" style={{ color: '#f0ebe3' }} tabIndex={mobileOpen ? 0 : -1}>{l.label}</Link>
         ))}
