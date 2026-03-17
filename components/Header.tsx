@@ -32,10 +32,24 @@ export default function Header() {
   const textColor = '#f0ebe3'
   const dimColor = scrolled ? '#c4bfa9' : 'rgba(240,235,227,0.65)'
 
+  // メニューが開いている時はヘッダー背景を透明にする
+  const headerBg = mobileOpen
+    ? 'transparent'
+    : scrolled
+      ? 'rgba(26,36,24,0.92)'
+      : 'transparent'
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500" style={{ background: scrolled ? 'rgba(26,36,24,0.92)' : 'transparent', backdropFilter: scrolled ? 'blur(20px)' : 'none', boxShadow: scrolled ? '0 1px 20px rgba(0,0,0,0.15)' : 'none' }}>
+    <header
+      className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+      style={{
+        background: headerBg,
+        backdropFilter: scrolled && !mobileOpen ? 'blur(20px)' : 'none',
+        boxShadow: scrolled && !mobileOpen ? '0 1px 20px rgba(0,0,0,0.15)' : 'none',
+      }}
+    >
       <nav className="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between relative z-50" aria-label="メインナビゲーション">
-        <Link href="/" className="block" aria-label="仙豆のちから トップ">
+        <Link href="/" className="block" aria-label="仙豆のちから トップ" onClick={() => setMobileOpen(false)}>
           <Image src="/images/logo.png" alt="仙豆のちから" width={240} height={60} className="h-14 w-auto" style={{ filter: scrolled ? 'brightness(1.3)' : 'brightness(1.1)' }} />
         </Link>
         <ul className="hidden md:flex items-center gap-9 text-xs font-medium tracking-wider">
@@ -48,7 +62,12 @@ export default function Header() {
             <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main inline-flex items-center gap-2 font-bold px-6 py-2.5 rounded-full text-xs" style={{ background: '#8bb88a', color: '#1a2418' }}>予約する</a>
           </li>
         </ul>
-        <button className="md:hidden p-2 relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5" onClick={() => setMobileOpen(!mobileOpen)} aria-label="メニュー" aria-expanded={mobileOpen}>
+        <button
+          className="md:hidden p-2 relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="メニュー"
+          aria-expanded={mobileOpen}
+        >
           <span className={`block w-5 h-px transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-[4px]' : ''}`} style={{ background: textColor }} />
           <span className={`block w-5 h-px transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} style={{ background: textColor }} />
           <span className={`block h-px transition-all duration-300 ml-auto ${mobileOpen ? 'w-5 -rotate-45 -translate-y-[4px]' : 'w-3'}`} style={{ background: textColor }} />
