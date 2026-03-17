@@ -32,23 +32,16 @@ export default function Header() {
   const textColor = '#f0ebe3'
   const dimColor = scrolled ? '#c4bfa9' : 'rgba(240,235,227,0.65)'
 
-  // メニューが開いている時はヘッダー背景を透明にする
-  const headerBg = mobileOpen
-    ? 'transparent'
-    : scrolled
-      ? 'rgba(26,36,24,0.92)'
-      : 'transparent'
-
   return (
     <header
       className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
       style={{
-        background: headerBg,
-        backdropFilter: scrolled && !mobileOpen ? 'blur(20px)' : 'none',
-        boxShadow: scrolled && !mobileOpen ? '0 1px 20px rgba(0,0,0,0.15)' : 'none',
+        background: scrolled ? 'rgba(26,36,24,0.92)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        boxShadow: scrolled ? '0 1px 20px rgba(0,0,0,0.15)' : 'none',
       }}
     >
-      <nav className="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between relative z-50" aria-label="メインナビゲーション">
+      <nav className="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between relative z-[60]" aria-label="メインナビゲーション">
         <Link href="/" className="block" aria-label="仙豆のちから トップ" onClick={() => setMobileOpen(false)}>
           <Image src="/images/logo.png" alt="仙豆のちから" width={240} height={60} className="h-14 w-auto" style={{ filter: scrolled ? 'brightness(1.3)' : 'brightness(1.1)' }} />
         </Link>
@@ -63,7 +56,7 @@ export default function Header() {
           </li>
         </ul>
         <button
-          className="md:hidden p-2 relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+          className="md:hidden p-2 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="メニュー"
           aria-expanded={mobileOpen}
@@ -74,9 +67,9 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* モバイルメニューオーバーレイ */}
+      {/* モバイルメニューオーバーレイ — z-[55]でヘッダー背景(z-50)より上、nav(z-[60])より下 */}
       <div
-        className={`md:hidden fixed inset-0 z-40 flex flex-col items-center justify-center gap-10 transition-all duration-500 ${
+        className={`md:hidden fixed inset-0 z-[55] flex flex-col items-center justify-center gap-10 transition-all duration-500 ${
           mobileOpen
             ? 'opacity-100 visible pointer-events-auto'
             : 'opacity-0 invisible pointer-events-none'
