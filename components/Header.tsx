@@ -36,7 +36,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500" style={{ background: scrolled ? 'rgba(26,36,24,0.92)' : 'transparent', backdropFilter: scrolled ? 'blur(20px)' : 'none', boxShadow: scrolled ? '0 1px 20px rgba(0,0,0,0.15)' : 'none' }}>
       <nav className="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between" aria-label="メインナビゲーション">
         <Link href="/" className="block" aria-label="仙豆のちから トップ">
-          <Image src="/images/logo.png" alt="仙豆のちから" width={240} height={60} className="h-17 w-auto" style={{ filter: scrolled ? 'brightness(1.3)' : 'brightness(1.1)' }} />
+          <Image src="/images/logo.png" alt="仙豆のちから" width={240} height={60} className="h-14 w-auto" style={{ filter: scrolled ? 'brightness(1.3)' : 'brightness(1.1)' }} />
         </Link>
         <ul className="hidden md:flex items-center gap-9 text-xs font-medium tracking-wider">
           {navLinks.map(l => (
