@@ -33,43 +33,46 @@ export default function Header() {
   const dimColor = scrolled ? '#c4bfa9' : 'rgba(240,235,227,0.65)'
 
   return (
-    <header
-      className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
-      style={{
-        background: scrolled ? 'rgba(26,36,24,0.92)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        boxShadow: scrolled ? '0 1px 20px rgba(0,0,0,0.15)' : 'none',
-      }}
-    >
-      <nav className="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between relative z-[60]" aria-label="メインナビゲーション">
-        <Link href="/" className="block" aria-label="仙豆のちから トップ" onClick={() => setMobileOpen(false)}>
-          <Image src="/images/logo.png" alt="仙豆のちから" width={240} height={60} className="h-14 w-auto" style={{ filter: scrolled ? 'brightness(1.3)' : 'brightness(1.1)' }} />
-        </Link>
-        <ul className="hidden md:flex items-center gap-9 text-xs font-medium tracking-wider">
-          {navLinks.map(l => (
-            <li key={l.href}>
-              <Link href={l.href} className="transition-colors hover:opacity-70" style={{ color: dimColor }}>{l.label}</Link>
+    <>
+      {/* ヘッダーバー */}
+      <header
+        className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+        style={{
+          background: scrolled ? 'rgba(26,36,24,0.92)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          boxShadow: scrolled ? '0 1px 20px rgba(0,0,0,0.15)' : 'none',
+        }}
+      >
+        <nav className="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between" aria-label="メインナビゲーション">
+          <Link href="/" className="block" aria-label="仙豆のちから トップ" onClick={() => setMobileOpen(false)}>
+            <Image src="/images/logo.png" alt="仙豆のちから" width={240} height={60} className="h-14 w-auto" style={{ filter: scrolled ? 'brightness(1.3)' : 'brightness(1.1)' }} />
+          </Link>
+          <ul className="hidden md:flex items-center gap-9 text-xs font-medium tracking-wider">
+            {navLinks.map(l => (
+              <li key={l.href}>
+                <Link href={l.href} className="transition-colors hover:opacity-70" style={{ color: dimColor }}>{l.label}</Link>
+              </li>
+            ))}
+            <li>
+              <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main inline-flex items-center gap-2 font-bold px-6 py-2.5 rounded-full text-xs" style={{ background: '#8bb88a', color: '#1a2418' }}>予約する</a>
             </li>
-          ))}
-          <li>
-            <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main inline-flex items-center gap-2 font-bold px-6 py-2.5 rounded-full text-xs" style={{ background: '#8bb88a', color: '#1a2418' }}>予約する</a>
-          </li>
-        </ul>
-        <button
-          className="md:hidden p-2 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="メニュー"
-          aria-expanded={mobileOpen}
-        >
-          <span className={`block w-5 h-px transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-[4px]' : ''}`} style={{ background: textColor }} />
-          <span className={`block w-5 h-px transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} style={{ background: textColor }} />
-          <span className={`block h-px transition-all duration-300 ml-auto ${mobileOpen ? 'w-5 -rotate-45 -translate-y-[4px]' : 'w-3'}`} style={{ background: textColor }} />
-        </button>
-      </nav>
+          </ul>
+          <button
+            className="md:hidden p-2 relative z-[60] w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="メニュー"
+            aria-expanded={mobileOpen}
+          >
+            <span className={`block w-5 h-px transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-[4px]' : ''}`} style={{ background: textColor }} />
+            <span className={`block w-5 h-px transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} style={{ background: textColor }} />
+            <span className={`block h-px transition-all duration-300 ml-auto ${mobileOpen ? 'w-5 -rotate-45 -translate-y-[4px]' : 'w-3'}`} style={{ background: textColor }} />
+          </button>
+        </nav>
+      </header>
 
-      {/* モバイルメニューオーバーレイ — z-[55]でヘッダー背景(z-50)より上、nav(z-[60])より下 */}
+      {/* モバイルメニューオーバーレイ — headerの外、独立したstacking context */}
       <div
-        className={`md:hidden fixed inset-0 z-[55] flex flex-col items-center justify-center gap-10 transition-all duration-500 ${
+        className={`md:hidden fixed inset-0 z-50 flex flex-col items-center justify-center gap-10 transition-all duration-500 ${
           mobileOpen
             ? 'opacity-100 visible pointer-events-auto'
             : 'opacity-0 invisible pointer-events-none'
@@ -85,6 +88,6 @@ export default function Header() {
         ))}
         <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main mt-4 font-bold px-10 py-4 rounded-full text-base" style={{ background: '#8bb88a', color: '#1a2418' }} tabIndex={mobileOpen ? 0 : -1}>予約する</a>
       </div>
-    </header>
+    </>
   )
 }
