@@ -55,7 +55,7 @@ export default function HomePage() {
       <main>
         {/* ===== HERO ===== */}
         <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 overflow-hidden" aria-label="メインビジュアル">
-        <div className="parallax-hero">
+        <div className="absolute inset-0 z-0">
           <Image src="/images/hero.jpg" alt="仙豆のちから 店内の雰囲気" fill className="object-cover hidden sm:block" style={{ objectPosition: 'center 10%' }} priority sizes="100vw" />
           <Image src="/images/hero-sp.jpg" alt="仙豆のちから 施術風景" fill className="object-cover sm:hidden" priority sizes="100vw" />
             <div className="absolute inset-0" style={{ background: 'rgba(26,36,24,0.55)' }} />
