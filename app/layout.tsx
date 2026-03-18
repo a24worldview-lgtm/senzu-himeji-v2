@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     url: SITE.url,
     siteName: SITE.nameShort,
     images: [{ url: '/images/ogp.jpg', width: 1200, height: 630, alt: '仙豆のちから 姫路大手前通り店｜ドライヘッドスパサロン' }],
-},
-twitter: {
+  },
+  twitter: {
     card: 'summary_large_image',
     title: `${SITE.name}｜ドライヘッドスパ専門店`,
     description: SITE.description,
     images: ['/images/ogp.jpg'],
-},
+  },
   metadataBase: new URL(SITE.url),
   alternates: { canonical: '/' },
 }
@@ -34,10 +34,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja">
       <head>
-        <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1GHH9D830V"></script>
-  <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1GHH9D830V');` }} />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1GHH9D830V"></script>
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1GHH9D830V');` }} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
