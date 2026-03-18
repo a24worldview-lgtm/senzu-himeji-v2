@@ -18,7 +18,14 @@ export const metadata: Metadata = {
     locale: 'ja_JP',
     url: SITE.url,
     siteName: SITE.nameShort,
-  },
+    images: [{ url: '/images/ogp.jpg', width: 1200, height: 630, alt: '仙豆のちから 姫路大手前通り店｜ドライヘッドスパサロン' }],
+},
+twitter: {
+    card: 'summary_large_image',
+    title: `${SITE.name}｜ドライヘッドスパ専門店`,
+    description: SITE.description,
+    images: ['/images/ogp.jpg'],
+},
   metadataBase: new URL(SITE.url),
   alternates: { canonical: '/' },
 }
