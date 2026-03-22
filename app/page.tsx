@@ -1,322 +1,293 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { SITE } from '@/lib/site'
-import { concerns } from '@/lib/concerns'
-import { generateLocalBusinessJsonLd, generateFaqJsonLd } from '@/lib/jsonld'
-import ScrollReveal from '@/components/ScrollReveal'
-import SectionHeader from '@/components/SectionHeader'
-import Accordion from '@/components/Accordion'
-import CtaBanner from '@/components/CtaBanner'
 
-const topFaqs = [
-  { question: 'ドライヘッドスパとは何ですか？', answer: '水やオイルを一切使わず、オールハンドで頭皮・頭の筋肉・筋膜をほぐす施術です。髪が濡れないのでメイクや髪型を気にせず、お仕事帰りやお買い物ついでにも気軽にご利用いただけます。' },
-  { question: '不眠・睡眠の悩みに効果がありますか？', answer: '頭部の筋膜をほぐすことで自律神経のバランスが整い、副交感神経が優位になりやすくなります。施術中に深い眠りに入られるお客様が多く、睡眠の質の改善を実感される方が多数いらっしゃいます。ただし効果には個人差があります。' },
-  { question: '施術中に寝てしまっても大丈夫ですか？', answer: 'もちろん大丈夫です。むしろ眠ってしまうほどリラックスしていただけるのが理想です。当店のお客様の多くが施術中に深い眠りに入られます。' },
-  { question: '予約なしでも利用できますか？', answer: '空きがあれば当日のご来店も可能ですが、事前のご予約をおすすめしております。ホットペッパービューティーからのネット予約が便利です。' },
-  { question: '男性でも利用できますか？', answer: 'はい、性別を問わずどなたでもご利用いただけます。男性のお客様も多く、デスクワークによる脳疲労や眼精疲労のケアに人気です。' },
-  { question: 'ペアでの利用は可能ですか？', answer: 'はい、カップルやご友人同士でのペア利用に対応しております。スタッフ2名の確保が必要なため、事前にお電話でご相談ください。' },
-  { question: '姫路駅からのアクセスを教えてください', answer: 'JR姫路駅北口から大手前通りを北へ徒歩約5分、呉服町のハトヤビル1階102号室です。' },
-]
-
-const menuItems = [
-  { badge: 'No.1', title: '極上睡眠ドライヘッドスパ60分コース', subtitle: '睡眠改善コース — 人気No.1', description: '腕・首肩・肩甲骨をほぐした後、メインのヘッドスパ30分へ。頭部の深層筋膜を丁寧にほぐし、脳疲労のリセットと睡眠の質改善に。施術中に深い眠りに落ちるお客様がほとんどです。' },
-  { badge: '★', title: '極上睡眠ドライヘッドスパ75分コース', subtitle: '首肩脚のお疲れ解消 — 店舗イチ押し', description: '60分の内容に脚のケアをプラス。脚→腕→首肩→肩甲骨→ヘッド30分の流れで、デスクワークや立ち仕事による全身の疲労感をリセットします。' },
-  { badge: 'Full', title: '極上睡眠ドライヘッドスパ90分コース', subtitle: '全身をじっくり癒すフルコース', description: '脚→腕→首肩→肩甲骨→ヘッド30分を、一つひとつの部位にたっぷり時間をかけて施術するフルコース。全身のめぐりを整え、極上のリセット体験を。自分へのご褒美や特別な日に。' },
-]
-
-const features = [
-  { title: 'リクライニングチェア 4席', desc: '上質なリクライニングチェアで、浮遊するようなリラックス姿勢を。', icon: 'M2 6h20v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6ZM2 10h20' },
-  { title: '半個室・カーテン仕切り', desc: '周りを気にせず、あなただけの落ち着いた空間で癒しの時間を。', icon: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10' },
-  { title: 'ペア利用 OK', desc: 'カップル、友人同士、ご夫婦で一緒に施術を。大切な方との癒し時間に。', icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' },
-  { title: '水・オイル不使用', desc: 'ドライ施術だから髪もメイクもそのまま。仕事帰りに気軽にどうぞ。', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
-]
-
-const symptomTags = ['脳疲労', '不眠・睡眠の質', '眼精疲労', '自律神経の乱れ', '頭痛・偏頭痛', '首・肩のコリ', 'リフトアップ', 'ストレス']
-
-/* Moss green color constants */
-const C = {
-  cream: '#f0ebe3',
-  dim: '#c4bfa9',
-  faint: '#8a8674',
-  sage: '#8bb88a',
-  sageDark: '#6a9a69',
-  base: '#1a2418',
-  baseWarm: '#1f2b1d',
-  card: '#253224',
-  elevated: '#2d3b2b',
+export const metadata: Metadata = {
+  title: '採用情報｜ドライヘッドスパ セラピスト募集',
+  description: '仙豆のちから 姫路大手前通り店では、ドライヘッドスパのセラピストを募集しています。未経験OK・研修充実・指名料100%還元。姫路駅徒歩5分。',
+  alternates: { canonical: '/recruit' },
 }
 
-export default function HomePage() {
+const jobPostingJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "JobPosting",
+  "title": "ドライヘッドスパ セラピスト（アルバイト・パート）",
+  "description": "<p>ドライヘッドスパ専門店「仙豆のちから 姫路大手前通り店」にて、お客様への施術とサロン業務全般をお任せします。水やオイルを一切使わない独自の技術で、お客様に極上の睡眠体験を提供するやりがいのあるお仕事です。</p><p>【具体的な業務】カウンセリング、ドライヘッドスパ施術、受付・接客、予約管理</p><p>【ここがポイント】未経験OK・研修充実・指名料100%還元・ノルマなし・手荒れの心配なし・シフト自由</p>",
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "SUNZfactory株式会社",
+    "value": "senzu-himeji-therapist-2026"
+  },
+  "datePosted": "2026-03-22",
+  "validThrough": "2026-12-31T23:59",
+  "employmentType": "PART_TIME",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "SUNZfactory株式会社",
+    "sameAs": "https://senzu-himeji.com",
+    "logo": "https://senzu-himeji.com/images/logo.png"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "呉服町48番地 ハトヤビル1階 102",
+      "addressLocality": "姫路市",
+      "addressRegion": "兵庫県",
+      "postalCode": "670-0923",
+      "addressCountry": "JP"
+    }
+  },
+  "baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "JPY",
+    "value": {
+      "@type": "QuantitativeValue",
+      "value": 1120,
+      "minValue": 1120,
+      "maxValue": 1200,
+      "unitText": "HOUR"
+    }
+  },
+  "workHours": "10:00-22:00の間で実働5〜8時間（シフト制）",
+  "jobBenefits": "交通費支給、社会保険完備、指名手当100%還元、コース歩合、社員登用制度あり、研修制度充実",
+  "qualifications": "学歴不問・資格不問・未経験OK",
+  "experienceRequirements": "経験不問（未経験歓迎）",
+  "skills": "接客が好きな方、向上心のある方、人柄重視",
+  "industry": "リラクゼーション・美容・健康",
+  "directApply": true,
+  "applicationContact": {
+    "@type": "ContactPoint",
+    "telephone": "+81-79-263-7440",
+    "email": "arimura@sunz-group.jp",
+    "contactType": "応募受付"
+  }
+}
+
+export default function RecruitPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateLocalBusinessJsonLd()) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFaqJsonLd(topFaqs)) }} />
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
+      />
       <main>
-        {/* ===== HERO ===== */}
-        <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 overflow-hidden" aria-label="メインビジュアル">
-        <div className="absolute inset-0 z-0">
-          <Image src="/images/hero.jpg" alt="仙豆のちから 店内の雰囲気" fill className="object-cover hidden sm:block" style={{ objectPosition: 'center 10%' }} priority sizes="100vw" />
-          <Image src="/images/hero-sp.jpg" alt="仙豆のちから 施術風景" fill className="object-cover sm:hidden" priority sizes="100vw" />
-            <div className="absolute inset-0" style={{ background: 'rgba(26,36,24,0.55)' }} />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #1a2418 0%, rgba(26,36,24,0) 12%, transparent 50%, rgba(26,36,24,0.25) 100%)' }} />
-          </div>
-
-          <div className="absolute w-[400px] h-[400px] rounded-full -top-20 -left-40 z-0" style={{ background: 'rgba(139,184,138,0.05)', filter: 'blur(120px)' }} />
-
-          <div className="relative z-10 text-center max-w-3xl mx-auto">
-            <div className="anim-in anim-d1 mb-14">
-              <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] tracking-widest" style={{ border: '1px solid rgba(240,235,227,0.15)', background: 'rgba(240,235,227,0.05)', color: 'rgba(240,235,227,0.65)' }}>
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: C.sage }} />
-                HIMEJI — {SITE.address.access}
-              </span>
-            </div>
-
-            <h1 className="anim-in anim-d2 mb-10">
-              <span className="heading-editorial block mb-5 text-base sm:text-lg" style={{ color: 'rgba(240,235,227,0.4)' }}>Dry Head Spa Salon</span>
-              <span className="font-display font-black text-[1.6rem] sm:text-[2.8rem] md:text-[3.5rem] leading-[1.15] tracking-tight block" style={{ color: C.cream }}>
-              がんばる毎日に、<br />
-              脳から休む時間を。
-              </span>
+        {/* ヒーロー — 施術写真を背景に */}
+        <section className="relative pt-40 pb-24 sm:pt-48 sm:pb-32 px-6 sm:px-10 text-center overflow-hidden">
+          <Image
+            src="/images/recruit-treatment.jpg"
+            alt="施術風景"
+            fill
+            className="object-cover"
+            style={{ opacity: 0.25 }}
+            priority
+          />
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <p className="text-xs sm:text-sm tracking-[0.3em] mb-6" style={{ color: '#8bb88a' }}>RECRUIT</p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6" style={{ color: '#f0ebe3' }}>
+              未経験から、手に職を。
             </h1>
+            <p className="text-lg sm:text-xl font-light mb-8" style={{ color: 'rgba(240,235,227,0.75)' }}>
+              "ありがとう"が、毎日届く仕事。
+            </p>
+            <p className="text-sm leading-[2] font-light max-w-md mx-auto" style={{ color: 'rgba(240,235,227,0.55)' }}>
+              ドライヘッドスパ専門店「仙豆のちから」で、<br />
+              一生モノの技術を身につけませんか？
+            </p>
+          </div>
+        </section>
 
-            <p className="anim-in anim-d3 text-sm sm:text-base leading-[2] max-w-md mx-auto mb-14 font-light" style={{ color: C.dim }}>
-              水もオイルも使わない。<br />
-              オールハンドの&#34;頭ほぐし&#34;で、<br />
-              脳疲労をリセットする専門店。
+        {/* 店内の雰囲気 — 写真ギャラリー */}
+        <section className="py-16 sm:py-24 px-6 sm:px-10">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Gallery</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>働く環境</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="col-span-2 sm:col-span-2 relative aspect-[16/9] rounded-xl overflow-hidden">
+                <Image src="/images/recruit-interior.jpg" alt="店内の様子" fill className="object-cover" />
+              </div>
+              <div className="relative aspect-square sm:aspect-[3/4] rounded-xl overflow-hidden">
+                <Image src="/images/recruit-chair.jpg" alt="リクライニングチェア" fill className="object-cover" />
+              </div>
+              <div className="col-span-2 sm:col-span-3 relative aspect-[21/9] rounded-xl overflow-hidden">
+                <Image src="/images/recruit-team.jpg" alt="スタッフ集合写真" fill className="object-cover" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 募集要項 */}
+        <section className="py-16 sm:py-24 px-6 sm:px-10" style={{ background: 'rgba(139,184,138,0.03)' }}>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Overview</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>募集要項</h2>
+
+            <div className="space-y-0 rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(139,184,138,0.15)' }}>
+              {[
+                ['募集職種', 'ドライヘッドスパ セラピスト'],
+                ['雇用形態', 'アルバイト・パート（社員登用制度あり）'],
+                ['給与', '時給 1,120円〜1,200円 ＋ 各種インセンティブ'],
+                ['勤務時間', '10:00〜22:00の間でシフト制（実働5〜8時間）'],
+                ['休日', '週休2日制（シフト制）/ 週3日休みも可能'],
+                ['勤務地', '兵庫県姫路市呉服町48番地 ハトヤビル1階 102'],
+                ['アクセス', 'JR姫路駅 北口より徒歩5分'],
+                ['応募資格', '学歴不問・資格不問・未経験OK'],
+                ['待遇', '交通費支給 / 社会保険完備 / 研修制度 / 有給休暇'],
+              ].map(([label, value], i) => (
+                <div key={i} className="flex flex-col sm:flex-row" style={{ borderBottom: i < 8 ? '1px solid rgba(139,184,138,0.1)' : 'none' }}>
+                  <div className="sm:w-40 shrink-0 px-6 py-4 text-xs font-bold tracking-wider" style={{ color: '#8bb88a', background: 'rgba(139,184,138,0.05)' }}>{label}</div>
+                  <div className="px-6 py-4 text-sm leading-relaxed" style={{ color: '#f0ebe3' }}>{value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 給与・月収例 */}
+        <section className="py-16 sm:py-24 px-6 sm:px-10">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Salary</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4" style={{ color: '#f0ebe3' }}>がんばった分だけ、還元される。</h2>
+            <p className="text-sm text-center mb-12 leading-relaxed" style={{ color: 'rgba(240,235,227,0.65)' }}>
+              指名料100%還元＋コース歩合。<br />社歴ではなく、お客様に選ばれた分だけ収入が増える仕組みです。
             </p>
 
-            <div className="anim-in anim-d4 flex flex-col items-center justify-center gap-5">
-              <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer"
-                 className="cta-main font-bold px-10 py-4 rounded-full text-sm hover:scale-[1.03] transition-all duration-300"
-                 style={{ background: C.sage, color: C.base, boxShadow: '0 10px 30px rgba(139,184,138,0.2)' }}>
-                お得なクーポンで予約する
-              </a>
-              <a href="#about" className="text-xs tracking-wider flex items-center gap-2" style={{ color: 'rgba(240,235,227,0.45)' }}>
-                Scroll
-                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 5l4 4 4-4"/></svg>
-              </a>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {[
+                { pattern: '家庭と両立', days: '週3日 / 短時間', income: '約77,200円', detail: '時給1,120円×5h×月12日 ＋ インセンティブ', accent: false },
+                { pattern: 'レギュラー勤務', days: '週4日 / 中時間', income: '約138,440円', detail: '時給1,120円×7h×月16日 ＋ インセンティブ', accent: false },
+                { pattern: 'フルタイム', days: '週5日', income: '約237,120円', detail: '時給1,120円×8h×月22日 ＋ インセンティブ', accent: true },
+              ].map((item, i) => (
+                <div key={i} className="rounded-2xl p-6 text-center" style={{ background: item.accent ? 'rgba(139,184,138,0.1)' : 'rgba(26,36,24,0.5)', border: item.accent ? '1px solid rgba(139,184,138,0.3)' : '1px solid rgba(139,184,138,0.1)' }}>
+                  <p className="text-xs font-bold tracking-wider mb-1" style={{ color: '#8bb88a' }}>{item.pattern}</p>
+                  <p className="text-xs mb-4" style={{ color: 'rgba(240,235,227,0.5)' }}>{item.days}</p>
+                  <p className="text-2xl font-bold mb-2" style={{ color: '#f0ebe3' }}>月収 {item.income}</p>
+                  <p className="text-xs leading-relaxed" style={{ color: 'rgba(240,235,227,0.5)' }}>＋ 交通費</p>
+                  <p className="text-xs mt-3 leading-relaxed" style={{ color: 'rgba(240,235,227,0.45)' }}>{item.detail}</p>
+                </div>
+              ))}
             </div>
           </div>
-
-          <div className="absolute bottom-0 left-0 w-full h-24" style={{ background: `linear-gradient(to top, ${C.base}, transparent)` }} />
         </section>
 
-        {/* ===== CONCEPT ===== */}
-        <section id="about" className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.base }} aria-labelledby="about-h">
-          <ScrollReveal>
-            <div className="max-w-4xl mx-auto">
-              <SectionHeader labelEn="Concept" id="about-h" heading={<>頭をほぐすと、<br />心も身体も<span className="text-glow">ほどけていく。</span></>} />
-              <div className="max-w-xl mx-auto text-center space-y-6">
-                <p className="text-sm sm:text-base leading-[2.2] font-light" style={{ color: C.dim }}>
-                  スマホ、パソコン、情報過多——<br />
-                  現代人の脳は常にフル回転しています。
-                </p>
-                <p className="text-sm sm:text-base leading-[2.2] font-light" style={{ color: C.dim }}>
-                  「仙豆のちから」は、頭の深層筋膜を<br />
-                  的確にとらえるオールハンド技術で、<br />
-                  自律神経のバランスを整え、<br />
-                  <strong style={{ color: C.cream, fontWeight: 500 }}>質の高い睡眠へと導く</strong><br />
-                  ドライヘッドスパ専門店です。<br />
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
-        </section>
-
-        {/* ===== CONCERNS ===== */}
-        <section id="concern" className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.baseWarm }} aria-labelledby="concern-h">
-          <div className="max-w-5xl mx-auto relative z-10">
-            <ScrollReveal>
-              <SectionHeader labelEn="For Your Concerns" id="concern-h" heading={<>こんな<span className="text-glow">お悩み</span>ありませんか？</>} />
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.15}>
-              <div className="flex items-center justify-center gap-3 flex-wrap mb-16">
-                {symptomTags.map(tag => <span key={tag} className="tag-pill">{tag}</span>)}
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.18}>
-              <div className="relative w-full max-w-md mx-auto h-48 sm:h-56 rounded-3xl overflow-hidden mb-16" style={{ border: '1px solid rgba(139,184,138,0.1)' }}>
-                <Image src="/images/treatment.jpg" alt="ドライヘッドスパの施術イメージ" fill className="object-cover" style={{ opacity: 0.9 }} sizes="(max-width: 768px) 100vw, 448px" />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #1f2b1d66, transparent)' }} />
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.25}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {concerns.map(c => (
-                  <Link key={c.slug} href={`/concerns/${c.slug}`}
-                    className="feat block group rounded-3xl p-9 sm:p-11"
-                    style={{ background: 'rgba(37,50,36,0.7)', border: '1px solid rgba(139,184,138,0.08)' }}>
-                    <div className="flex items-center gap-3 mb-5">
-                      <span className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(139,184,138,0.1)' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round">
-                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                      </span>
-                      <h3 className="font-display font-bold text-base" style={{ color: C.cream }}>{c.title}</h3>
-                    </div>
-                    <p className="text-sm leading-[2] font-light line-clamp-3" style={{ color: C.dim }}>{c.sections[0]?.body}</p>
-                    <span className="inline-flex items-center gap-1 text-xs mt-4 group-hover:gap-2 transition-all" style={{ color: C.sage }}>
-                      詳しく読む →
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* ===== MENU ===== */}
-        <section id="menu" className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.base }} aria-labelledby="menu-h">
+        {/* 選ばれる理由 */}
+        <section className="py-16 sm:py-24 px-6 sm:px-10" style={{ background: 'rgba(139,184,138,0.03)' }}>
           <div className="max-w-3xl mx-auto">
-            <ScrollReveal>
-              <SectionHeader labelEn="Menu" id="menu-h" heading={<>あなたに合った<span className="text-glow">ほぐし方</span>を。</>} />
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <Accordion items={menuItems.map(m => ({
-                trigger: (
-                  <div className="flex items-center gap-4">
-                    <span className="flex items-center justify-center w-11 h-11 rounded-full shrink-0 overflow-hidden" style={{ background: 'rgba(139,184,138,0.12)' }}><img src="/images/logo-mark.png" alt="" className="w-6 h-6 object-contain" /></span>
-                    <div>
-                    <h3 className="font-display font-bold text-sm sm:text-base" style={{ color: C.cream }}>
-  {m.title.replace(/(\d+分)/, '').trim()}
-  <span className="text-xl sm:text-2xl font-bold ml-2" style={{ color: C.sage }}>
-    {m.title.match(/(\d+分)/)?.[0]}
-  </span>
-</h3>
-                      <p className="text-[11px] font-medium mt-1 tracking-wider" style={{ color: C.sage }}>{m.subtitle}</p>
-                    </div>
+            <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Why Choose Us</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>仙豆のちからで働く理由</h2>
+
+            <div className="grid gap-8 sm:grid-cols-2">
+              {[
+                { title: '指名料 100%還元', desc: '指名をいただいた分は全額スタッフに支給。頑張りがそのまま収入に反映されます。' },
+                { title: '手荒れの心配なし', desc: '水やオイルを一切使わないドライ施術。力任せの施術もないので、身体への負担が少ない。' },
+                { title: '未経験から一生モノの技術を', desc: 'ヘッドエキスパートがマンツーマンで指導。どこでも通用する専門技術を無料で習得できます。' },
+                { title: 'ノルマなし', desc: '数字に追われるストレスなく、目の前のお客様に集中できる環境です。' },
+                { title: 'シフト自由', desc: '家庭の事情や趣味の時間を大切にしながら、柔軟に働けます。週3日〜OK。' },
+                { title: '社員登用あり', desc: 'アルバイトからスタートして、正社員を目指すことも可能です。' },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: 'rgba(139,184,138,0.15)', color: '#8bb88a' }}>{i + 1}</div>
+                  <div>
+                    <h3 className="text-base font-bold mb-2" style={{ color: '#f0ebe3' }}>{item.title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(240,235,227,0.6)' }}>{item.desc}</p>
                   </div>
-                ),
-                content: <p className="text-sm leading-[2] font-light" style={{ color: C.dim }}>{m.description}</p>,
-              }))} />
-            </ScrollReveal>
-            <ScrollReveal delay={0.25}>
-              <div className="text-center mt-14">
-                <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer"
-                   className="cta-main inline-flex items-center gap-3 font-bold px-9 py-4 rounded-full text-sm hover:scale-[1.03] transition-all duration-300"
-                   style={{ background: C.sage, color: C.base, boxShadow: '0 10px 30px rgba(139,184,138,0.2)' }}>
-                  メニュー・クーポン一覧
-                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 7h6M7 4l3 3-3 3"/></svg>
-                </a>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* ===== FEATURES ===== */}
-        <section className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.baseWarm }} aria-labelledby="feat-h">
-          <div className="max-w-5xl mx-auto">
-            <ScrollReveal>
-              <SectionHeader labelEn="Features" id="feat-h" heading={<>くつろぎの<span className="text-glow">すべて</span>が、ここに。</>} />
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-              <ScrollReveal className="lg:col-span-2 hidden lg:block">
-                <div className="relative rounded-3xl overflow-hidden h-full min-h-[420px]" style={{ border: '1px solid rgba(139,184,138,0.1)' }}>
-                  <Image src="/images/interior.jpg" alt="仙豆のちから 個室・リクライニングチェア" fill className="object-cover hover:scale-[1.02] transition-transform duration-700" style={{ opacity: 0.8 }} sizes="(max-width: 1024px) 0px, 40vw" />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(31,43,29,0.4), transparent)' }} />
                 </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.15} className="lg:col-span-3">
-                <div className="grid grid-cols-1 gap-4">
-                  {features.map(f => (
-                    <article key={f.title} className="feat flex items-start gap-5 rounded-2xl p-8" style={{ background: 'rgba(37,50,36,0.6)', border: '1px solid rgba(139,184,138,0.08)' }}>
-                      <span className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(139,184,138,0.1)' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round"><path d={f.icon}/></svg>
-                      </span>
-                      <div>
-                        <h3 className="font-display font-bold text-sm mb-1.5" style={{ color: C.cream }}>{f.title}</h3>
-                        <p className="text-[13px] leading-[1.9] font-light" style={{ color: C.dim }}>{f.desc}</p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </ScrollReveal>
+              ))}
             </div>
-
-            <ScrollReveal className="lg:hidden mt-10">
-              <div className="relative w-full h-48 rounded-3xl overflow-hidden" style={{ border: '1px solid rgba(139,184,138,0.1)' }}>
-                <Image src="/images/interior.jpg" alt="仙豆のちから 個室" fill className="object-cover" style={{ opacity: 0.8 }} sizes="100vw" />
-              </div>
-            </ScrollReveal>
           </div>
         </section>
 
-        {/* ===== FAQ ===== */}
-        <section className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.base }} aria-labelledby="faq-h">
+        {/* 仕事内容 */}
+        <section className="py-16 sm:py-24 px-6 sm:px-10">
           <div className="max-w-3xl mx-auto">
-            <ScrollReveal>
-              <SectionHeader labelEn="FAQ" id="faq-h" heading={<>よくある<span className="text-glow">ご質問</span></>} />
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <Accordion items={topFaqs.map(f => ({
-                trigger: <h3 className="font-display font-bold text-[13px] sm:text-sm" style={{ color: C.cream }}>{f.question}</h3>,
-                content: <p className="text-sm leading-[2] font-light" style={{ color: C.dim }}>{f.answer}</p>,
-              }))} />
-            </ScrollReveal>
-            <ScrollReveal delay={0.2}>
-              <div className="text-center mt-10">
-                <Link href="/faq" className="text-xs tracking-wider hover:underline underline-offset-4" style={{ color: C.sage }}>
-                  すべてのFAQを見る →
-                </Link>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
+            <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Work</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>お仕事内容</h2>
 
-        {/* ===== ACCESS ===== */}
-        <section id="access" className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.baseWarm }} aria-labelledby="access-h">
-          <div className="max-w-4xl mx-auto">
-            <ScrollReveal>
-              <SectionHeader labelEn="Access" id="access-h" heading={<>店舗<span className="text-glow">情報</span></>} />
-            </ScrollReveal>
-            <ScrollReveal delay={0.1}>
-              <div className="rounded-3xl p-9 sm:p-14" style={{ background: 'rgba(60,78,58,0.9)', border: '1px solid rgba(139,184,138,0.3)' }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
-                  <div className="space-y-9">
-                    <div>
-                      <p className="label-sm mb-2">店舗名</p>
-                      <p className="font-display font-bold text-base sm:text-lg leading-relaxed" style={{ color: C.cream }}>{SITE.nameShort}<br />姫路大手前通り店</p>
-                    </div>
-                    <div>
-                      <p className="label-sm mb-2">住所</p>
-                      <address className="not-italic text-sm leading-[2] font-light" style={{ color: C.dim }}>
-                        〒{SITE.address.postalCode}<br />
-                        {SITE.address.full}
-                      </address>
-                      <p className="text-[11px] mt-2 tracking-wider" style={{ color: C.faint }}>{SITE.address.access}</p>
-                    </div>
-                    <div>
-                      <p className="label-sm mb-2">営業時間</p>
-                      <p className="text-sm font-light" style={{ color: C.dim }}>{SITE.hours.open} — {SITE.hours.close}<span className="ml-2 text-[11px]" style={{ color: C.faint }}>（最終受付 {SITE.hours.lastEntry}）</span></p>
-                    </div>
-                    <div>
-                      <p className="label-sm mb-2">定休日</p>
-                      <p className="text-sm font-light" style={{ color: C.dim }}>{SITE.hours.holiday}</p>
-                    </div>
-                  </div>
-                  <div className="relative rounded-2xl overflow-hidden min-h-[300px]" style={{ background: C.elevated, border: '1px solid rgba(139,184,138,0.08)' }}>
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3275.0068864254554!2d134.6891870757227!3d34.830919376214744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3554e1a1110e52f9%3A0xab2cafa12a9cf676!2z44OJ44Op44Kk44OY44OD44OJ44K544OR44K144Ot44OzIOS7meixhuOBruOBoeOBi-OCiSDlp6vot6_lpKfmiYvliY3pgJrjgorlupc!5e0!3m2!1sja!2sjp!4v1773653276556!5m2!1sja!2sjp}"
-                      className="absolute inset-0 w-full h-full border-0 hover:opacity-100 transition-opacity duration-700"
-                      style={{ opacity: 0.65 }}
-                      allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-                      title="仙豆のちから 姫路大手前通り店の地図"
-                    />
+            <div className="space-y-6">
+              {[
+                { step: 'カウンセリング', desc: 'お客様のお悩み（疲れや睡眠の質など）をヒアリング。一人ひとりに合った施術プランをご提案します。' },
+                { step: '施術', desc: '頭や首周りの筋肉をじっくりほぐす、独自のドライヘッドスパ。水やオイルを使わないオールハンドの技術です。' },
+                { step: '受付・接客', desc: '予約管理やお会計、次回のご案内など。お客様に心地よく過ごしていただくためのサロンワーク全般。' },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-6 items-start rounded-xl p-6" style={{ background: 'rgba(26,36,24,0.5)', border: '1px solid rgba(139,184,138,0.1)' }}>
+                  <div className="shrink-0 text-3xl font-bold" style={{ color: 'rgba(139,184,138,0.2)' }}>0{i + 1}</div>
+                  <div>
+                    <h3 className="text-base font-bold mb-2" style={{ color: '#f0ebe3' }}>{item.step}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(240,235,227,0.6)' }}>{item.desc}</p>
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* ===== CTA ===== */}
-        <CtaBanner />
+        {/* スタッフの声 */}
+        <section className="py-16 sm:py-24 px-6 sm:px-10" style={{ background: 'rgba(139,184,138,0.03)' }}>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Voice</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>スタッフの声</h2>
+
+            <div className="space-y-6">
+              <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(26,36,24,0.5)', border: '1px solid rgba(139,184,138,0.1)' }}>
+                <p className="text-sm leading-[2] mb-4" style={{ color: 'rgba(240,235,227,0.75)' }}>
+                  「未経験で入社しましたが、研修で丁寧に教えてもらえたので安心でした。お客様が施術中に寝てしまうほどリラックスしてくれると、本当にやりがいを感じます。手荒れの心配がないのも、長く続けられる理由です。」
+                </p>
+                <p className="text-xs" style={{ color: '#8bb88a' }}>— 20代スタッフ・入社2年目</p>
+              </div>
+              <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(26,36,24,0.5)', border: '1px solid rgba(139,184,138,0.1)' }}>
+                <p className="text-sm leading-[2] mb-4" style={{ color: 'rgba(240,235,227,0.75)' }}>
+                  「子どもの学校行事に合わせてシフトを調整できるので、家庭との両立がしやすいです。指名をいただけるようになると収入も上がるので、モチベーションになっています。」
+                </p>
+                <p className="text-xs" style={{ color: '#8bb88a' }}>— 30代スタッフ・入社3年目</p>
+              </div>
+            </div>
+            <p className="text-xs text-center mt-6" style={{ color: 'rgba(240,235,227,0.3)' }}>※スタッフの声は実際の感想を元に構成しています</p>
+          </div>
+        </section>
+
+        {/* 応募CTA */}
+        <section className="py-20 sm:py-32 px-6 sm:px-10 text-center">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: '#f0ebe3' }}>
+              まずは、見学からでも。
+            </h2>
+            <p className="text-sm leading-relaxed mb-10" style={{ color: 'rgba(240,235,227,0.6)' }}>
+              「ちょっと話を聞いてみたい」「見学だけしたい」も大歓迎です。<br />
+              お電話またはメールでお気軽にご連絡ください。
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="tel:079-263-7440"
+                className="inline-flex items-center gap-3 font-bold px-10 py-4 rounded-full text-base transition-transform hover:scale-105"
+                style={{ background: '#8bb88a', color: '#1a2418' }}
+              >
+                電話で応募する
+              </a>
+              <a
+                href="mailto:arimura@sunz-group.jp?subject=仙豆のちから 求人への応募・お問い合わせ"
+                className="inline-flex items-center gap-3 font-bold px-10 py-4 rounded-full text-base transition-transform hover:scale-105"
+                style={{ background: 'transparent', color: '#8bb88a', border: '1px solid #8bb88a' }}
+              >
+                メールで応募する
+              </a>
+            </div>
+            <p className="mt-6 text-xs" style={{ color: 'rgba(240,235,227,0.4)' }}>
+              TEL: 079-263-7440（店舗直通）
+            </p>
+            <p className="mt-1 text-xs" style={{ color: 'rgba(240,235,227,0.4)' }}>
+              MAIL: arimura@sunz-group.jp
+            </p>
+          </div>
+        </section>
+
+        {/* トップに戻る */}
+        <div className="text-center pb-12">
+          <Link href="/" className="text-xs transition-colors hover:opacity-70" style={{ color: 'rgba(240,235,227,0.4)' }}>
+            ← トップページに戻る
+          </Link>
+        </div>
       </main>
     </>
   )
