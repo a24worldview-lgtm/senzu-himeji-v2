@@ -74,7 +74,7 @@ export default function HomePage() {
 
             <h1 className="anim-in anim-d2 mb-10">
               <span className="heading-editorial block mb-5 text-base sm:text-lg" style={{ color: 'rgba(240,235,227,0.4)' }}>Dry Head Spa Salon</span>
-              <span className="font-display font-black text-[1.6rem] sm:text-[2.8rem] md:text-[3.5rem] leading-[1.15] tracking-tight block" style={{ color: C.cream }}>
+              <span className="font-display font-black text-[1.8rem] sm:text-[3.2rem] md:text-[4rem] leading-[1.15] tracking-tight block" style={{ color: C.cream }}>
               がんばる毎日に、<br />
               脳から休む時間を。
               </span>
