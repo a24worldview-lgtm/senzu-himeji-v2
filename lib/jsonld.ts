@@ -11,6 +11,8 @@ export function generateLocalBusinessJsonLd() {
     alternateName: 'センズノチカラ ヒメジオオテマエドオリテン',
     description: SITE.description,
     url: SITE.url,
+    telephone: '079-263-7440',
+    image: ['https://senzu-himeji.com/images/ogp.jpg'],
     address: {
       '@type': 'PostalAddress',
       streetAddress: SITE.address.street,
