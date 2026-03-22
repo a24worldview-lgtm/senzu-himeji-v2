@@ -1,12 +1,9 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE } from '@/lib/site'
-
-export const metadata: Metadata = {
-  title: '採用情報｜ドライヘッドスパ セラピスト募集',
-  description: '仙豆のちから 姫路大手前通り店では、ドライヘッドスパのセラピストを募集しています。未経験OK・研修充実・指名料100%還元。姫路駅徒歩5分。',
-  alternates: { canonical: '/recruit' },
-}
+import Image from 'next/image'
 
 const jobPostingJsonLd = {
   "@context": "https://schema.org/",
@@ -58,12 +55,29 @@ const jobPostingJsonLd = {
   "directApply": true,
   "applicationContact": {
     "@type": "ContactPoint",
-    "telephone": "+81-90-7763-2757",
+    "telephone": "+81-79-263-7440",
+    "email": "arimura@sunz-group.jp",
     "contactType": "応募受付"
   }
 }
 
+const heroImages = [
+  { src: '/images/recruit-treatment.jpg', alt: '施術風景' },
+  { src: '/images/recruit-interior.jpg', alt: '店内の様子' },
+  { src: '/images/recruit-chair.jpg', alt: 'リクライニングチェア' },
+  { src: '/images/recruit-team.jpg', alt: 'スタッフ集合写真' },
+]
+
 export default function RecruitPage() {
+  const [currentImage, setCurrentImage] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % heroImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <>
       <script
@@ -71,22 +85,64 @@ export default function RecruitPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
       />
       <main>
-        {/* ヒーロー */}
-        <section className="relative pt-40 pb-20 sm:pt-48 sm:pb-28 px-6 sm:px-10 text-center">
+        {/* ヒーロー — スライドショー背景 */}
+        <section className="relative pt-40 pb-24 sm:pt-48 sm:pb-32 px-6 sm:px-10 text-center overflow-hidden min-h-[80vh] flex items-center justify-center">
+          {heroImages.map((img, i) => (
+            <Image
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              fill
+              className="object-cover transition-opacity duration-[2000ms] ease-in-out"
+              style={{ opacity: currentImage === i ? 0.3 : 0 }}
+              priority={i === 0}
+            />
+          ))}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(26,36,24,0.3), rgba(26,36,24,0.7))' }} />
           <div className="relative z-10 max-w-3xl mx-auto">
             <p className="text-xs sm:text-sm tracking-[0.3em] mb-6" style={{ color: '#8bb88a' }}>RECRUIT</p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6" style={{ color: '#f0ebe3' }}>
-              あなたの手で、<br />
-              誰かの「極上の眠り」をつくる。
+              未経験から、手に職を。
             </h1>
-            <p className="text-sm leading-[2] font-light max-w-md mx-auto" style={{ color: 'rgba(240,235,227,0.65)' }}>
+            <p className="text-lg sm:text-xl font-light mb-8" style={{ color: 'rgba(240,235,227,0.8)' }}>
+              "ありがとう"が、毎日届く仕事。
+            </p>
+            <p className="text-sm leading-[2] font-light max-w-md mx-auto mb-10" style={{ color: 'rgba(240,235,227,0.55)' }}>
               ドライヘッドスパ専門店「仙豆のちから」で、<br />
               一生モノの技術を身につけませんか？
             </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="tel:079-263-7440"
+                className="inline-flex items-center gap-2 font-bold px-8 py-3 rounded-full text-sm transition-transform hover:scale-105"
+                style={{ background: '#8bb88a', color: '#1a2418' }}
+              >
+                電話で応募する
+              </a>
+              <a
+                href="mailto:arimura@sunz-group.jp?subject=仙豆のちから 求人への応募・お問い合わせ"
+                className="inline-flex items-center gap-2 font-bold px-8 py-3 rounded-full text-sm transition-transform hover:scale-105"
+                style={{ background: 'transparent', color: '#8bb88a', border: '1px solid #8bb88a' }}
+              >
+                メールで応募する
+              </a>
+            </div>
+          </div>
+          {/* スライドインジケーター */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {heroImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentImage(i)}
+                className="w-2 h-2 rounded-full transition-all duration-500"
+                style={{ background: currentImage === i ? '#8bb88a' : 'rgba(240,235,227,0.3)', transform: currentImage === i ? 'scale(1.3)' : 'scale(1)' }}
+                aria-label={`スライド ${i + 1}`}
+              />
+            ))}
           </div>
         </section>
 
-        {/* 求人概要 */}
+        {/* 募集要項 */}
         <section className="py-16 sm:py-24 px-6 sm:px-10">
           <div className="max-w-3xl mx-auto">
             <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Overview</p>
@@ -191,25 +247,62 @@ export default function RecruitPage() {
           </div>
         </section>
 
+        {/* スタッフの声 */}
+        <section className="py-16 sm:py-24 px-6 sm:px-10">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Voice</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>スタッフの声</h2>
+
+            <div className="space-y-6">
+              <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(26,36,24,0.5)', border: '1px solid rgba(139,184,138,0.1)' }}>
+                <p className="text-sm leading-[2] mb-4" style={{ color: 'rgba(240,235,227,0.75)' }}>
+                  「未経験で入社しましたが、研修で丁寧に教えてもらえたので安心でした。お客様が施術中に寝てしまうほどリラックスしてくれると、本当にやりがいを感じます。手荒れの心配がないのも、長く続けられる理由です。」
+                </p>
+                <p className="text-xs" style={{ color: '#8bb88a' }}>— 20代スタッフ・入社2年目</p>
+              </div>
+              <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(26,36,24,0.5)', border: '1px solid rgba(139,184,138,0.1)' }}>
+                <p className="text-sm leading-[2] mb-4" style={{ color: 'rgba(240,235,227,0.75)' }}>
+                  「子どもの学校行事に合わせてシフトを調整できるので、家庭との両立がしやすいです。指名をいただけるようになると収入も上がるので、モチベーションになっています。」
+                </p>
+                <p className="text-xs" style={{ color: '#8bb88a' }}>— 30代スタッフ・入社3年目</p>
+              </div>
+            </div>
+            <p className="text-xs text-center mt-6" style={{ color: 'rgba(240,235,227,0.3)' }}>※スタッフの声は実際の感想を元に構成しています</p>
+          </div>
+        </section>
+
         {/* 応募CTA */}
-        <section className="py-20 sm:py-32 px-6 sm:px-10 text-center">
+        <section className="py-20 sm:py-32 px-6 sm:px-10 text-center" style={{ background: 'rgba(139,184,138,0.03)' }}>
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: '#f0ebe3' }}>
               まずは、見学からでも。
             </h2>
             <p className="text-sm leading-relaxed mb-10" style={{ color: 'rgba(240,235,227,0.6)' }}>
               「ちょっと話を聞いてみたい」「見学だけしたい」も大歓迎です。<br />
-              お気軽にお電話ください。
+              お電話またはメールでお気軽にご連絡ください。
             </p>
-            <a
-              href="tel:090-7763-2757"
-              className="inline-flex items-center gap-3 font-bold px-10 py-4 rounded-full text-base transition-transform hover:scale-105"
-              style={{ background: '#8bb88a', color: '#1a2418' }}
-            >
-              電話で応募・お問い合わせ
-            </a>
-            <p className="mt-4 text-xs" style={{ color: 'rgba(240,235,227,0.4)' }}>
-              TEL: 090-7763-2757（採用担当）
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="tel:079-263-7440"
+                className="inline-flex items-center gap-3 font-bold px-10 py-4 rounded-full text-base transition-transform hover:scale-105"
+                style={{ background: '#8bb88a', color: '#1a2418' }}
+              >
+                電話で応募する
+              </a>
+              <a
+                href="mailto:arimura@sunz-group.jp?subject=仙豆のちから 求人への応募・お問い合わせ"
+                className="inline-flex items-center gap-3 font-bold px-10 py-4 rounded-full text-base transition-transform hover:scale-105"
+                style={{ background: 'transparent', color: '#8bb88a', border: '1px solid #8bb88a' }}
+              >
+                メールで応募する
+              </a>
+            </div>
+            <p className="mt-6 text-xs" style={{ color: 'rgba(240,235,227,0.4)' }}>
+              TEL: 079-263-7440（店舗直通）
+            </p>
+            <p className="mt-1 text-xs" style={{ color: 'rgba(240,235,227,0.4)' }}>
+              MAIL: arimura@sunz-group.jp
             </p>
           </div>
         </section>
