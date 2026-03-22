@@ -1,13 +1,9 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { SITE } from '@/lib/site'
-
-export const metadata: Metadata = {
-  title: '採用情報｜ドライヘッドスパ セラピスト募集',
-  description: '仙豆のちから 姫路大手前通り店では、ドライヘッドスパのセラピストを募集しています。未経験OK・研修充実・指名料100%還元。姫路駅徒歩5分。',
-  alternates: { canonical: '/recruit' },
-}
 
 const jobPostingJsonLd = {
   "@context": "https://schema.org/",
@@ -65,7 +61,23 @@ const jobPostingJsonLd = {
   }
 }
 
+const heroImages = [
+  { src: '/images/recruit-treatment.jpg', alt: '施術風景' },
+  { src: '/images/recruit-interior.jpg', alt: '店内の様子' },
+  { src: '/images/recruit-chair.jpg', alt: 'リクライニングチェア' },
+  { src: '/images/recruit-team.jpg', alt: 'スタッフ集合写真' },
+]
+
 export default function RecruitPage() {
+  const [currentImage, setCurrentImage] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % heroImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <>
       <script
@@ -73,52 +85,65 @@ export default function RecruitPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
       />
       <main>
-        {/* ヒーロー — 施術写真を背景に */}
-        <section className="relative pt-40 pb-24 sm:pt-48 sm:pb-32 px-6 sm:px-10 text-center overflow-hidden">
-          <Image
-            src="/images/recruit-treatment.jpg"
-            alt="施術風景"
-            fill
-            className="object-cover"
-            style={{ opacity: 0.25 }}
-            priority
-          />
+        {/* ヒーロー — スライドショー背景 */}
+        <section className="relative pt-40 pb-24 sm:pt-48 sm:pb-32 px-6 sm:px-10 text-center overflow-hidden min-h-[80vh] flex items-center justify-center">
+          {heroImages.map((img, i) => (
+            <Image
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              fill
+              className="object-cover transition-opacity duration-[2000ms] ease-in-out"
+              style={{ opacity: currentImage === i ? 0.3 : 0 }}
+              priority={i === 0}
+            />
+          ))}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(26,36,24,0.3), rgba(26,36,24,0.7))' }} />
           <div className="relative z-10 max-w-3xl mx-auto">
             <p className="text-xs sm:text-sm tracking-[0.3em] mb-6" style={{ color: '#8bb88a' }}>RECRUIT</p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6" style={{ color: '#f0ebe3' }}>
               未経験から、手に職を。
             </h1>
-            <p className="text-lg sm:text-xl font-light mb-8" style={{ color: 'rgba(240,235,227,0.75)' }}>
+            <p className="text-lg sm:text-xl font-light mb-8" style={{ color: 'rgba(240,235,227,0.8)' }}>
               "ありがとう"が、毎日届く仕事。
             </p>
-            <p className="text-sm leading-[2] font-light max-w-md mx-auto" style={{ color: 'rgba(240,235,227,0.55)' }}>
+            <p className="text-sm leading-[2] font-light max-w-md mx-auto mb-10" style={{ color: 'rgba(240,235,227,0.55)' }}>
               ドライヘッドスパ専門店「仙豆のちから」で、<br />
               一生モノの技術を身につけませんか？
             </p>
-          </div>
-        </section>
-
-        {/* 店内の雰囲気 — 写真ギャラリー */}
-        <section className="py-16 sm:py-24 px-6 sm:px-10">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Gallery</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>働く環境</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-              <div className="col-span-2 sm:col-span-2 relative aspect-[16/9] rounded-xl overflow-hidden">
-                <Image src="/images/recruit-interior.jpg" alt="店内の様子" fill className="object-cover" />
-              </div>
-              <div className="relative aspect-square sm:aspect-[3/4] rounded-xl overflow-hidden">
-                <Image src="/images/recruit-chair.jpg" alt="リクライニングチェア" fill className="object-cover" />
-              </div>
-              <div className="col-span-2 sm:col-span-3 relative aspect-[21/9] rounded-xl overflow-hidden">
-                <Image src="/images/recruit-team.jpg" alt="スタッフ集合写真" fill className="object-cover" />
-              </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="tel:079-263-7440"
+                className="inline-flex items-center gap-2 font-bold px-8 py-3 rounded-full text-sm transition-transform hover:scale-105"
+                style={{ background: '#8bb88a', color: '#1a2418' }}
+              >
+                電話で応募する
+              </a>
+              <a
+                href="mailto:arimura@sunz-group.jp?subject=仙豆のちから 求人への応募・お問い合わせ"
+                className="inline-flex items-center gap-2 font-bold px-8 py-3 rounded-full text-sm transition-transform hover:scale-105"
+                style={{ background: 'transparent', color: '#8bb88a', border: '1px solid #8bb88a' }}
+              >
+                メールで応募する
+              </a>
             </div>
+          </div>
+          {/* スライドインジケーター */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {heroImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentImage(i)}
+                className="w-2 h-2 rounded-full transition-all duration-500"
+                style={{ background: currentImage === i ? '#8bb88a' : 'rgba(240,235,227,0.3)', transform: currentImage === i ? 'scale(1.3)' : 'scale(1)' }}
+                aria-label={`スライド ${i + 1}`}
+              />
+            ))}
           </div>
         </section>
 
         {/* 募集要項 */}
-        <section className="py-16 sm:py-24 px-6 sm:px-10" style={{ background: 'rgba(139,184,138,0.03)' }}>
+        <section className="py-16 sm:py-24 px-6 sm:px-10">
           <div className="max-w-3xl mx-auto">
             <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Overview</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>募集要項</h2>
@@ -145,7 +170,7 @@ export default function RecruitPage() {
         </section>
 
         {/* 給与・月収例 */}
-        <section className="py-16 sm:py-24 px-6 sm:px-10">
+        <section className="py-16 sm:py-24 px-6 sm:px-10" style={{ background: 'rgba(139,184,138,0.03)' }}>
           <div className="max-w-3xl mx-auto">
             <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Salary</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4" style={{ color: '#f0ebe3' }}>がんばった分だけ、還元される。</h2>
@@ -172,7 +197,7 @@ export default function RecruitPage() {
         </section>
 
         {/* 選ばれる理由 */}
-        <section className="py-16 sm:py-24 px-6 sm:px-10" style={{ background: 'rgba(139,184,138,0.03)' }}>
+        <section className="py-16 sm:py-24 px-6 sm:px-10">
           <div className="max-w-3xl mx-auto">
             <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Why Choose Us</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>仙豆のちからで働く理由</h2>
@@ -199,7 +224,7 @@ export default function RecruitPage() {
         </section>
 
         {/* 仕事内容 */}
-        <section className="py-16 sm:py-24 px-6 sm:px-10">
+        <section className="py-16 sm:py-24 px-6 sm:px-10" style={{ background: 'rgba(139,184,138,0.03)' }}>
           <div className="max-w-3xl mx-auto">
             <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Work</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>お仕事内容</h2>
@@ -223,7 +248,7 @@ export default function RecruitPage() {
         </section>
 
         {/* スタッフの声 */}
-        <section className="py-16 sm:py-24 px-6 sm:px-10" style={{ background: 'rgba(139,184,138,0.03)' }}>
+        <section className="py-16 sm:py-24 px-6 sm:px-10">
           <div className="max-w-3xl mx-auto">
             <p className="text-xs tracking-[0.3em] text-center mb-4" style={{ color: '#8bb88a' }}>Voice</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12" style={{ color: '#f0ebe3' }}>スタッフの声</h2>
@@ -247,7 +272,7 @@ export default function RecruitPage() {
         </section>
 
         {/* 応募CTA */}
-        <section className="py-20 sm:py-32 px-6 sm:px-10 text-center">
+        <section className="py-20 sm:py-32 px-6 sm:px-10 text-center" style={{ background: 'rgba(139,184,138,0.03)' }}>
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: '#f0ebe3' }}>
               まずは、見学からでも。
