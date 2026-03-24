@@ -152,9 +152,38 @@ export default function HomePage() {
                     style={{ background: 'rgba(37,50,36,0.7)', border: '1px solid rgba(139,184,138,0.08)' }}>
                     <div className="flex items-center gap-3 mb-5">
                       <span className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(139,184,138,0.1)' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round">
-                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
+                        {c.slug === 'insomnia' ? (
+                          <svg width="20" height="20" viewBox="0 0 64 64" fill="none">
+                            <path d="M32 8C18.7 8 8 18.7 8 32s10.7 24 24 24c13.3 0 24-10.7 24-24 0-1.1-.1-2.1-.2-3.2C52.4 34.4 46.6 38 40 38c-8.8 0-16-7.2-16-16 0-6.6 3.6-12.4 9.2-15.8C32.1 6.1 31.1 6 30 6" stroke={C.sage} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <text x="42" y="20" fontFamily="sans-serif" fontSize="11" fontWeight="500" fill={C.sage} opacity={0.7}>z</text>
+                            <text x="48" y="14" fontFamily="sans-serif" fontSize="13" fontWeight="500" fill={C.sage} opacity={0.85}>z</text>
+                            <text x="55" y="7" fontFamily="sans-serif" fontSize="15" fontWeight="500" fill={C.sage}>Z</text>
+                          </svg>
+                        ) : c.slug === 'eye-strain' ? (
+                          <svg width="20" height="20" viewBox="0 0 64 64" fill="none">
+                            <path d="M4 32S16 14 32 14s28 18 28 18S48 50 32 50 4 32 4 32z" stroke={C.sage} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <circle cx="32" cy="32" r="8" stroke={C.sage} strokeWidth="2.5"/>
+                            <circle cx="32" cy="32" r="3" fill={C.sage}/>
+                            <line x1="12" y1="12" x2="18" y2="18" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round" opacity={0.5}/>
+                            <line x1="52" y1="12" x2="46" y2="18" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round" opacity={0.5}/>
+                            <path d="M32 50C32 50 29 55 32 58C35 55 32 50 32 50Z" fill={C.sage} opacity={0.4}/>
+                          </svg>
+                        ) : c.slug === 'autonomic' ? (
+                          <svg width="20" height="20" viewBox="0 0 64 64" fill="none">
+                            <path d="M8 24C14 16 20 16 26 24S38 32 44 24S56 16 58 24" stroke={C.sage} strokeWidth="2.5" strokeLinecap="round" opacity={0.9}/>
+                            <path d="M8 40C12 34 16 46 22 36S30 28 36 42C40 50 44 30 50 38S56 44 58 40" stroke={C.sage} strokeWidth="2.5" strokeLinecap="round" opacity={0.45} strokeDasharray="3 2"/>
+                            <circle cx="32" cy="32" r="2.5" fill={C.sage} opacity={0.6}/>
+                          </svg>
+                        ) : (
+                          <svg width="20" height="20" viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="30" r="18" stroke={C.sage} strokeWidth="2.5"/>
+                            <path d="M18 14L22 22L16 24L22 34" stroke={C.sage} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity={0.8}/>
+                            <path d="M46 14L42 22L48 24L42 34" stroke={C.sage} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity={0.8}/>
+                            <path d="M14 8L18 12" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round" opacity={0.4}/>
+                            <path d="M50 8L46 12" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round" opacity={0.4}/>
+                            <path d="M32 4L32 10" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round" opacity={0.4}/>
+                          </svg>
+                        )}
                       </span>
                       <h3 className="font-display font-bold text-base" style={{ color: C.cream }}>{c.title}</h3>
                     </div>
