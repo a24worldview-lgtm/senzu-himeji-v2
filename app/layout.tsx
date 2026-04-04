@@ -6,7 +6,7 @@ import { SITE } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE.name}｜姫路のドライヘッドスパ専門店【脳疲労・睡眠改善】`,
+    default: `${SITE.name}｜ドライヘッドスパ・ヘッドマッサージ専門店【姫路駅徒歩5分】`,
     template: `%s｜${SITE.nameShort}`,
   },
   description: SITE.description,
