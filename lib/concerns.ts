@@ -21,7 +21,7 @@ export const concerns: ConcernData[] = [
     slug: 'insomnia',
     title: '不眠・睡眠の質',
     titleEn: 'Insomnia & Sleep Quality',
-    metaDescription: '姫路のドライヘッドスパ専門店「仙豆のちから」。不眠・睡眠の質の低下でお悩みの方へ。頭部の深層筋膜をほぐし自律神経を整えることで、質の高い睡眠へ導きます。',
+    metaDescription: '眠れない・眠りが浅い方へ。姫路駅徒歩5分のドライヘッドスパで脳の緊張をほぐし深い眠りへ。施術中に寝落ちする方続出。完全個室・男性OK。仙豆のちから姫路大手前通り店。',
     heroSubtitle: 'ドライヘッドスパ × 睡眠改善',
     heroDescription: '眠れない夜を過ごしていませんか？\n頭の深層筋膜をほぐすことで、自律神経のバランスが整い、\n身体が自然な眠りのモードへ切り替わります。',
     sections: [
@@ -58,7 +58,7 @@ export const concerns: ConcernData[] = [
     slug: 'eye-strain',
     title: '眼精疲労',
     titleEn: 'Eye Strain & Digital Fatigue',
-    metaDescription: '姫路のドライヘッドスパ専門店「仙豆のちから」。PC・スマホによる眼精疲労でお悩みの方へ。目の周囲のツボと側頭筋をほぐし、疲れ目をすっきりリフレッシュします。',
+    metaDescription: 'パソコン・スマホ疲れによる眼精疲労をドライヘッドスパで改善。目の奥の痛み・かすみ目・頭痛にお悩みの方へ。姫路駅徒歩5分、完全個室・男性OK。仙豆のちから。',
     heroSubtitle: 'ドライヘッドスパ × 眼精疲労ケア',
     heroDescription: '画面を見つめ続ける毎日、目の奥が重くありませんか？\n側頭筋と目周りのツボを的確にほぐすことで、\n視界がクリアになる体験を。',
     sections: [
@@ -91,7 +91,7 @@ export const concerns: ConcernData[] = [
     slug: 'autonomic',
     title: '自律神経の乱れ',
     titleEn: 'Autonomic Nervous System Balance',
-    metaDescription: '姫路のドライヘッドスパ専門店「仙豆のちから」。自律神経の乱れ・ストレスでお悩みの方へ。頭部へのオールハンド施術で副交感神経を優位にし、心身のバランスを整えます。',
+    metaDescription: '自律神経の乱れからくる不眠・だるさ・頭痛をドライヘッドスパで改善。頭をほぐして副交感神経を活性化。姫路駅徒歩5分、完全個室・男性OK。仙豆のちから。',
     heroSubtitle: 'ドライヘッドスパ × 自律神経ケア',
     heroDescription: 'なんとなく調子が悪い、疲れが取れない——\nそれは自律神経の乱れかもしれません。\n頭をほぐすことで、身体の"調律"を取り戻します。',
     sections: [
@@ -124,7 +124,7 @@ export const concerns: ConcernData[] = [
     slug: 'headache',
     title: '頭痛・偏頭痛',
     titleEn: 'Headache & Tension Relief',
-    metaDescription: '姫路のドライヘッドスパ専門店「仙豆のちから」。慢性的な頭痛・偏頭痛でお悩みの方へ。後頭部〜首の緊張をほぐし、血行を促進することで頭痛の軽減をサポートします。',
+    metaDescription: '慢性的な頭痛・偏頭痛を頭皮のマッサージで改善。薬に頼らず後頭部〜首の緊張をほぐす根本アプローチ。姫路駅徒歩5分、完全個室・男性OK。仙豆のちから。',
     heroSubtitle: 'ドライヘッドスパ × 頭痛ケア',
     heroDescription: '薬に頼りたくない、でも頭が重い——\nその頭痛、頭と首の筋肉の緊張が原因かもしれません。\n根本からほぐして、スッキリした毎日を。',
     sections: [
