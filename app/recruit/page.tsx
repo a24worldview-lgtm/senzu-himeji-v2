@@ -15,7 +15,7 @@ const jobPostingJsonLd = {
     "name": "SUNZfactory株式会社",
     "value": "senzu-himeji-therapist-2026"
   },
-  "datePosted": "2026-03-22",
+  "datePosted": "2026-04-13",
   "validThrough": "2026-12-31T23:59",
   "employmentType": "PART_TIME",
   "hiringOrganization": {
@@ -157,8 +157,9 @@ export default function RecruitPage() {
                 ['休日', '週休2日制（シフト制）/ 週3日休みも可能'],
                 ['勤務地', '兵庫県姫路市呉服町48番地 ハトヤビル1階 102'],
                 ['アクセス', 'JR姫路駅 北口より徒歩5分'],
-                ['応募資格', '学歴不問・資格不問・未経験OK'],
+                ['応募資格', '学歴不問・資格不問・未経験OK・履歴書不要'],
                 ['待遇', '交通費支給 / 社会保険完備 / 研修制度 / 有給休暇'],
+      ['試用期間', '6ヶ月（期間中も時給・条件の変動なし）'],
               ].map(([label, value], i) => (
                 <div key={i} className="flex flex-col sm:flex-row" style={{ borderBottom: i < 8 ? '1px solid rgba(139,184,138,0.1)' : 'none' }}>
                   <div className="sm:w-40 shrink-0 px-6 py-4 text-xs font-bold tracking-wider" style={{ color: '#8bb88a', background: 'rgba(139,184,138,0.05)' }}>{label}</div>
