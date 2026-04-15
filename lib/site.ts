@@ -2,7 +2,7 @@ export const SITE = {
   name: '仙豆のちから 姫路大手前通り店',
   nameShort: '仙豆のちから',
   description: '姫路駅徒歩5分のドライヘッドスパ・ヘッドマッサージ専門店。眼精疲労・肩こり・不眠・自律神経の乱れを頭のマッサージで改善。完全個室・男性OK。HotPepperで初回クーポンあり。',
-  url: 'https://www.senzu-himeji.com', 
+  url: 'https://senzu-himeji.com', 
   address: {
     postalCode: '670-0923',
     region: '兵庫県',
