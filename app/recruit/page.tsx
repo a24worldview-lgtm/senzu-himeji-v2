@@ -49,10 +49,6 @@ const jobPostingJsonLd = {
   "workHours": "10:00-22:00の間で実働5〜8時間（シフト制）",
   "jobBenefits": "交通費支給、社会保険完備、指名手当100%還元、コース歩合、社員登用制度あり、研修制度充実",
   "qualifications": "学歴不問・資格不問・未経験OK",
-  "experienceRequirements": {
-  "@type": "OccupationalExperienceRequirements",
-  "monthsOfExperience": 0
-},
   "skills": "接客が好きな方、向上心のある方、人柄重視",
   "industry": "リラクゼーション・美容・健康",
   "directApply": true,
