@@ -5,6 +5,19 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 
+// ============================================
+// GA4 イベント送信関数
+// ============================================
+const trackEvent = (eventName: string, params?: Record<string, string>) => {
+  if (typeof window === 'undefined') return
+  const gtag = (window as any).gtag
+  if (typeof gtag === 'function') {
+    gtag('event', eventName, params || {})
+  } else if (process.env.NODE_ENV === 'development') {
+    console.log('[GA4 Event]', eventName, params)
+  }
+}
+
 const jobPostingJsonLd = {
   "@context": "https://schema.org/",
   "@type": "JobPosting",
@@ -111,15 +124,19 @@ export default function RecruitPage() {
               一生モノの技術を身につけませんか？
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              {/* ▼ GA4: 電話タップ（ヒーロー） */}
               <a
                 href="tel:079-263-7440"
+                onClick={() => trackEvent('recruit_phone_tap', { button_location: 'hero' })}
                 className="inline-flex items-center gap-2 font-bold px-8 py-3 rounded-full text-sm transition-transform hover:scale-105"
                 style={{ background: '#8bb88a', color: '#1a2418' }}
               >
                 電話で応募する
               </a>
+              {/* ▼ GA4: メールクリック（ヒーロー） */}
               <a
                 href="mailto:arimura@sunz-group.jp?subject=仙豆のちから 求人への応募・お問い合わせ"
+                onClick={() => trackEvent('recruit_email_click', { button_location: 'hero' })}
                 className="inline-flex items-center gap-2 font-bold px-8 py-3 rounded-full text-sm transition-transform hover:scale-105"
                 style={{ background: 'transparent', color: '#8bb88a', border: '1px solid #8bb88a' }}
               >
@@ -283,15 +300,19 @@ export default function RecruitPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              {/* ▼ GA4: 電話タップ（フッター） */}
               <a
                 href="tel:079-263-7440"
+                onClick={() => trackEvent('recruit_phone_tap', { button_location: 'footer' })}
                 className="inline-flex items-center gap-3 font-bold px-10 py-4 rounded-full text-base transition-transform hover:scale-105"
                 style={{ background: '#8bb88a', color: '#1a2418' }}
               >
                 電話で応募する
               </a>
+              {/* ▼ GA4: メールクリック（フッター） */}
               <a
                 href="mailto:arimura@sunz-group.jp?subject=仙豆のちから 求人への応募・お問い合わせ"
+                onClick={() => trackEvent('recruit_email_click', { button_location: 'footer' })}
                 className="inline-flex items-center gap-3 font-bold px-10 py-4 rounded-full text-base transition-transform hover:scale-105"
                 style={{ background: 'transparent', color: '#8bb88a', border: '1px solid #8bb88a' }}
               >
