@@ -8,6 +8,7 @@ import SectionHeader from '@/components/SectionHeader'
 import Accordion from '@/components/Accordion'
 import CtaBanner from '@/components/CtaBanner'
 import FeatureIcon from '@/components/decor/FeatureIcon'
+import DecorSymbol from '@/components/decor/DecorSymbol'
 
 const topFaqs = [
   { question: 'ドライヘッドスパとは何ですか？', answer: '水やオイルを一切使わず、オールハンドで頭皮・頭の筋肉・筋膜をほぐす施術です。髪が濡れないのでメイクや髪型を気にせず、お仕事帰りやお買い物ついでにも気軽にご利用いただけます。' },
@@ -134,7 +135,12 @@ export default function HomePage() {
 
             <ScrollReveal delay={0.15}>
               <div className="flex items-center justify-center gap-3 flex-wrap mb-16">
-                {symptomTags.map(tag => <span key={tag} className="tag-pill">{tag}</span>)}
+                {symptomTags.map(tag => (
+                  <span key={tag} className="tag-pill">
+                    <DecorSymbol name="diamond" size={10} className="text-senzu" />
+                    {tag}
+                  </span>
+                ))}
               </div>
             </ScrollReveal>
 
@@ -189,8 +195,9 @@ export default function HomePage() {
                       <h3 className="font-display font-bold text-base" style={{ color: C.cream }}>{c.title}</h3>
                     </div>
                     <p className="text-sm leading-[2] font-light line-clamp-3" style={{ color: C.dim }}>{c.sections[0]?.body}</p>
-                    <span className="inline-flex items-center gap-1 text-xs mt-4 group-hover:gap-2 transition-all" style={{ color: C.sage }}>
-                      詳しく読む →
+                    <span className="inline-flex items-center gap-2 text-xs mt-4" style={{ color: C.sage }}>
+                      詳しく読む
+                      <DecorSymbol name="arrow-right" size={14} className="transition-transform group-hover:translate-x-2" />
                     </span>
                   </Link>
                 ))}
