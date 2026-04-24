@@ -1,4 +1,4 @@
-type DecorSymbolName = 'arrow-down' | 'arrow-right' | 'diamond'
+type DecorSymbolName = 'arrow-down' | 'arrow-right' | 'diamond' | 'plus' | 'minus'
 
 interface DecorSymbolProps {
   name: DecorSymbolName
@@ -42,6 +42,23 @@ export default function DecorSymbol({ name, size = 20, className }: DecorSymbolP
     return (
       <svg {...commonProps}>
         <path d="M20 8 L32 20 L20 32 L8 20 Z" />
+      </svg>
+    )
+  }
+
+  if (name === 'plus') {
+    return (
+      <svg {...commonProps}>
+        <line x1="20" y1="10" x2="20" y2="30" />
+        <line x1="10" y1="20" x2="30" y2="20" />
+      </svg>
+    )
+  }
+
+  if (name === 'minus') {
+    return (
+      <svg {...commonProps}>
+        <line x1="10" y1="20" x2="30" y2="20" />
       </svg>
     )
   }
