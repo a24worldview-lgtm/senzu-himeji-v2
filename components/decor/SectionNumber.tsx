@@ -1,0 +1,23 @@
+interface SectionNumberProps {
+  variant: '01'
+  className?: string
+}
+
+export default function SectionNumber({ variant, className }: SectionNumberProps) {
+  if (variant !== '01') return null
+
+  return (
+    <svg
+      viewBox="0 0 335 102"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+      className={className}
+    >
+      <path
+        d="M123,51L124,53L316,52Z M90,19L87,20L83,24L76,28L78,28L81,26L85,27L85,79L83,81L81,82L79,82L95,82L93,82L91,81Z M39,18L32,20L29,22L24,27L20,35L18,43L18,59L20,67L23,73L25,76L28,79L31,81L36,83L44,83L47,82L52,79L56,75L61,66L63,58L63,42L61,35L57,27L52,22L49,20L42,18Z M38,19L43,19L47,21L52,26L55,31L58,43L58,59L57,65L55,71L53,75L47,81L45,82L36,82L34,81L29,76L25,68L23,60L23,39L25,32L28,26L33,21Z"
+        fill="currentColor"
+        fillRule="evenodd"
+      />
+    </svg>
+  )
+}

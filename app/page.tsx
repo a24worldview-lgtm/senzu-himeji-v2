@@ -7,6 +7,7 @@ import ScrollReveal from '@/components/ScrollReveal'
 import SectionHeader from '@/components/SectionHeader'
 import Accordion from '@/components/Accordion'
 import CtaBanner from '@/components/CtaBanner'
+import FeatureIcon from '@/components/decor/FeatureIcon'
 
 const topFaqs = [
   { question: 'ドライヘッドスパとは何ですか？', answer: '水やオイルを一切使わず、オールハンドで頭皮・頭の筋肉・筋膜をほぐす施術です。髪が濡れないのでメイクや髪型を気にせず、お仕事帰りやお買い物ついでにも気軽にご利用いただけます。' },
@@ -25,10 +26,10 @@ const menuItems = [
 ]
 
 const features = [
-  { title: 'リクライニングチェア 4席', desc: '上質なリクライニングチェアで、浮遊するようなリラックス姿勢を。', icon: 'M2 6h20v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6ZM2 10h20' },
-  { title: '半個室・カーテン仕切り', desc: '周りを気にせず、あなただけの落ち着いた空間で癒しの時間を。', icon: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10' },
-  { title: 'ペア利用 OK', desc: 'カップル、友人同士、ご夫婦で一緒に施術を。大切な方との癒し時間に。', icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' },
-  { title: '水・オイル不使用', desc: 'ドライ施術だから髪もメイクもそのまま。仕事帰りに気軽にどうぞ。', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+  { title: 'リクライニングチェア 4席', desc: '上質なリクライニングチェアで、浮遊するようなリラックス姿勢を。', iconName: 'chair' as const },
+  { title: '半個室・カーテン仕切り', desc: '周りを気にせず、あなただけの落ち着いた空間で癒しの時間を。', iconName: 'curtain' as const },
+  { title: 'ペア利用 OK', desc: 'カップル、友人同士、ご夫婦で一緒に施術を。大切な方との癒し時間に。', iconName: 'pair' as const },
+  { title: '水・オイル不使用', desc: 'ドライ施術だから髪もメイクもそのまま。仕事帰りに気軽にどうぞ。', iconName: 'waterdrop-no' as const },
 ]
 
 const symptomTags = ['脳疲労', '不眠・睡眠の質', '眼精疲労', '自律神経の乱れ', '頭痛・偏頭痛', '首・肩のコリ', 'リフトアップ', 'ストレス']
@@ -254,10 +255,8 @@ export default function HomePage() {
               <ScrollReveal delay={0.15} className="lg:col-span-3">
                 <div className="grid grid-cols-1 gap-4">
                   {features.map(f => (
-                    <article key={f.title} className="feat flex items-start gap-5 rounded-2xl p-8" style={{ background: 'rgba(37,50,36,0.6)', border: '1px solid rgba(139,184,138,0.08)' }}>
-                      <span className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(139,184,138,0.1)' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round"><path d={f.icon}/></svg>
-                      </span>
+                    <article key={f.title} className="feat flex items-center gap-5 rounded-2xl p-8" style={{ background: 'rgba(37,50,36,0.6)', border: '1px solid rgba(139,184,138,0.08)' }}>
+                      <FeatureIcon name={f.iconName} size={44} className="text-senzu shrink-0" />
                       <div>
                         <h3 className="font-display font-bold text-sm mb-1.5" style={{ color: C.cream }}>{f.title}</h3>
                         <p className="text-[13px] leading-[1.9] font-light" style={{ color: C.dim }}>{f.desc}</p>
