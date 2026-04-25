@@ -192,8 +192,8 @@ export default function HomePage() {
                     <Image
                       src={`/images/menu/menu-${m.iconSlug}.png`}
                       alt=""
-                      width={64}
-                      height={64}
+                      width={96}
+                      height={96}
                       className="shrink-0"
                     />
                     <div>
