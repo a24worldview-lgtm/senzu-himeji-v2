@@ -161,8 +161,8 @@ export default function HomePage() {
                       <Image
                         src={`/images/concerns/concern-${c.slug}.png`}
                         alt=""
-                        width={44}
-                        height={44}
+                        width={64}
+                        height={64}
                         className="shrink-0"
                       />
                       <h3 className="font-display font-bold text-base" style={{ color: C.cream }}>{c.title}</h3>
