@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 20" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <line x1="10" y1="10" x2="190" y2="10"/>
+  <line x1="210" y1="10" x2="390" y2="10"/>
+  <path d="M200 4 L206 10 L200 16 L194 10 Z"/>
+</svg>
