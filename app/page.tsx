@@ -21,9 +21,9 @@ const topFaqs = [
 ]
 
 const menuItems = [
-  { badge: 'No.1', title: '極上睡眠ドライヘッドスパ60分コース', subtitle: '睡眠改善コース — 人気No.1', description: '腕・首肩・肩甲骨をほぐした後、メインのヘッドスパ30分へ。頭部の深層筋膜を丁寧にほぐし、脳疲労のリセットと睡眠の質改善に。施術中に深い眠りに落ちるお客様がほとんどです。' },
-  { badge: '★', title: '極上睡眠ドライヘッドスパ75分コース', subtitle: '首肩脚のお疲れ解消 — 店舗イチ押し', description: '60分の内容に脚のケアをプラス。脚→腕→首肩→肩甲骨→ヘッド30分の流れで、デスクワークや立ち仕事による全身の疲労感をリセットします。' },
-  { badge: 'Full', title: '極上睡眠ドライヘッドスパ90分コース', subtitle: '全身をじっくり癒すフルコース', description: '脚→腕→首肩→肩甲骨→ヘッド30分を、一つひとつの部位にたっぷり時間をかけて施術するフルコース。全身のめぐりを整え、極上のリセット体験を。自分へのご褒美や特別な日に。' },
+  { badge: 'No.1', iconSlug: '60min', title: '極上睡眠ドライヘッドスパ60分コース', subtitle: '睡眠改善コース — 人気No.1', description: '腕・首肩・肩甲骨をほぐした後、メインのヘッドスパ30分へ。頭部の深層筋膜を丁寧にほぐし、脳疲労のリセットと睡眠の質改善に。施術中に深い眠りに落ちるお客様がほとんどです。' },
+  { badge: '★', iconSlug: '75min', title: '極上睡眠ドライヘッドスパ75分コース', subtitle: '首肩脚のお疲れ解消 — 店舗イチ押し', description: '60分の内容に脚のケアをプラス。脚→腕→首肩→肩甲骨→ヘッド30分の流れで、デスクワークや立ち仕事による全身の疲労感をリセットします。' },
+  { badge: 'Full', iconSlug: '90min', title: '極上睡眠ドライヘッドスパ90分コース', subtitle: '全身をじっくり癒すフルコース', description: '脚→腕→首肩→肩甲骨→ヘッド30分を、一つひとつの部位にたっぷり時間をかけて施術するフルコース。全身のめぐりを整え、極上のリセット体験を。自分へのご褒美や特別な日に。' },
 ]
 
 const features = [
@@ -189,7 +189,13 @@ export default function HomePage() {
               <Accordion items={menuItems.map(m => ({
                 trigger: (
                   <div className="flex items-center gap-4">
-                    <span className="flex items-center justify-center w-11 h-11 rounded-full shrink-0 overflow-hidden" style={{ background: 'rgba(139,184,138,0.12)' }}><img src="/images/logo-mark.png" alt="" className="w-6 h-6 object-contain" /></span>
+                    <Image
+                      src={`/images/menu/menu-${m.iconSlug}.png`}
+                      alt=""
+                      width={64}
+                      height={64}
+                      className="shrink-0"
+                    />
                     <div>
                     <h3 className="font-display font-bold text-sm sm:text-base" style={{ color: C.cream }}>
   {m.title.replace(/(\d+分)/, '').trim()}
