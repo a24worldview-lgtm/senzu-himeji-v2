@@ -371,7 +371,7 @@ export default function HomePage() {
                   <span className="label-sm">Access</span>
                   <div className="botanical-line mt-3" />
                 </div>
-                <h2 id="access-h" className="font-display font-bold text-2xl sm:text-3xl leading-snug" style={{ color: C.cream }}>
+                <h2 id="access-h" className="font-display font-bold text-2xl sm:text-3xl md:text-[2.5rem] leading-snug" style={{ color: C.cream }}>
                   店舗<span className="text-glow">情報</span>
                 </h2>
                 <p className="mt-5 font-display font-bold text-lg sm:text-xl leading-relaxed" style={{ color: C.cream }}>
