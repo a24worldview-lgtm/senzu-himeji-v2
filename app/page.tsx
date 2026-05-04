@@ -247,7 +247,7 @@ export default function HomePage() {
                               {serviceName}
                             </p>
                           </div>
-                          <div className="flex h-[72px] w-[72px] shrink-0 items-start justify-center sm:h-[84px] sm:w-[84px] md:h-24 md:w-24 lg:h-28 lg:w-28">
+                          <div className="flex h-[88px] w-[88px] shrink-0 items-start justify-center sm:h-[88px] sm:w-[88px] md:h-24 md:w-24 lg:h-28 lg:w-28">
                             <Image
                               src={`/images/menu/menu-${m.iconSlug}.png`}
                               alt=""
