@@ -224,38 +224,51 @@ export default function HomePage() {
         </section>
 
         {/* ===== FEATURES ===== */}
-        <section className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.baseWarm }} aria-labelledby="feat-h">
-          <div className="max-w-5xl mx-auto">
-            <ScrollReveal>
-              <SectionHeader labelEn="Features" id="feat-h" heading={<>くつろぎの<span className="text-glow">すべて</span>が、ここに。</>} />
-            </ScrollReveal>
+        <section className="relative pt-24 pb-28 sm:pt-28 sm:pb-36 px-6 sm:px-10 overflow-hidden" style={{ background: '#fbf8f2', color: C.base }} aria-labelledby="feat-h">
+          <div className="absolute inset-x-0 top-0 h-28 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(31,43,29,0.10), transparent)' }} />
+          <div className="absolute inset-x-0 bottom-0 h-28 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(26,36,24,0.08), transparent)' }} />
 
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-              <ScrollReveal className="lg:col-span-2 hidden lg:block">
-                <div className="relative rounded-3xl overflow-hidden h-full min-h-[420px]" style={{ border: '1px solid rgba(139,184,138,0.1)' }}>
-                  <Image src="/images/interior.jpg" alt="仙豆のちから 個室・リクライニングチェア" fill className="object-cover hover:scale-[1.02] transition-transform duration-700" style={{ opacity: 0.8 }} sizes="(max-width: 1024px) 0px, 40vw" />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(31,43,29,0.4), transparent)' }} />
+          <div className="max-w-6xl mx-auto relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-end">
+              <ScrollReveal>
+                <div className="max-w-2xl">
+                  <div className="mb-8 inline-flex flex-col items-center">
+                    <span className="label-sm">Features</span>
+                    <span className="mt-3 h-px w-10" style={{ background: 'linear-gradient(90deg, transparent, var(--color-senzu), transparent)' }} />
+                  </div>
+                  <h2 id="feat-h" className="font-display font-bold text-2xl sm:text-3xl md:text-[2.25rem] leading-[1.35]" style={{ color: C.base }}>
+                    静かに休める、<br />
+                    半個室のヘッドスパ空間。
+                  </h2>
+                  <p className="mt-8 text-[15px] sm:text-base leading-[2] font-light max-w-xl" style={{ color: '#5b554b' }}>
+                    カーテンで仕切った半個室と、ゆったり倒せるリクライニングチェア。髪やメイクを気にせず、短い時間でも深く休める環境を整えています。
+                  </p>
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal delay={0.15} className="lg:col-span-3">
-                <div className="grid grid-cols-1 gap-4">
-                  {features.map(f => (
-                    <article key={f.title} className="feat flex items-center gap-5 rounded-2xl p-8" style={{ background: 'rgba(37,50,36,0.6)', border: '1px solid rgba(139,184,138,0.08)' }}>
-                      <FeatureIcon name={f.iconName} size={44} className="text-senzu shrink-0" />
-                      <div>
-                        <h3 className="font-display font-bold text-sm mb-1.5" style={{ color: C.cream }}>{f.title}</h3>
-                        <p className="text-[14px] leading-[1.9] font-light" style={{ color: C.dim }}>{f.desc}</p>
-                      </div>
-                    </article>
-                  ))}
+              <ScrollReveal delay={0.12}>
+                <div className="relative h-72 sm:h-80 rounded-xl overflow-hidden" style={{ border: '1px solid rgba(26,36,24,0.10)' }}>
+                  <Image src="/images/interior.jpg" alt="仙豆のちから 個室・リクライニングチェア" fill className="object-cover" style={{ opacity: 0.88, objectPosition: 'center 58%' }} sizes="(max-width: 1024px) 100vw, 44vw" />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(26,36,24,0.34), rgba(26,36,24,0.08) 58%, rgba(251,248,242,0.12))' }} />
                 </div>
               </ScrollReveal>
             </div>
 
-            <ScrollReveal className="lg:hidden mt-10">
-              <div className="relative w-full h-48 rounded-3xl overflow-hidden" style={{ border: '1px solid rgba(139,184,138,0.1)' }}>
-                <Image src="/images/interior.jpg" alt="仙豆のちから 個室" fill className="object-cover" style={{ opacity: 0.8 }} sizes="100vw" />
+            <ScrollReveal delay={0.18}>
+              <div className="mt-16 grid grid-cols-1 sm:grid-cols-2" style={{ borderTop: '1px solid rgba(26,36,24,0.14)' }}>
+                {features.map((f, i) => (
+                  <article
+                    key={f.title}
+                    className={`flex gap-5 py-8 border-b ${i % 2 === 0 ? 'sm:pr-10' : 'sm:pl-10 sm:border-l'}`}
+                    style={{ borderColor: 'rgba(26,36,24,0.14)' }}
+                  >
+                    <FeatureIcon name={f.iconName} size={42} className="text-senzu shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-display font-bold text-sm sm:text-base mb-2" style={{ color: C.base }}>{f.title}</h3>
+                      <p className="text-[14px] leading-[1.9] font-light" style={{ color: '#5f5a50' }}>{f.desc}</p>
+                    </div>
+                  </article>
+                ))}
               </div>
             </ScrollReveal>
           </div>
