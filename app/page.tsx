@@ -35,6 +35,13 @@ const features = [
 
 const symptomTags = ['脳疲労', '不眠・睡眠の質', '眼精疲労', '自律神経の乱れ', '頭痛・偏頭痛', '首・肩のコリ', 'リフトアップ', 'ストレス']
 
+const concernSummaries: Record<string, string> = {
+  insomnia: '眠りが浅い、寝ても疲れが取れない方へ。頭からゆっくり休息のスイッチを入れていきます。',
+  'eye-strain': 'スマホやPCで目の奥が重い方へ。こめかみや頭まわりの緊張をやさしく整えます。',
+  autonomic: 'なんとなく疲れが抜けない、だるさが続く方へ。深いリラックスで自律神経の切り替えを助けます。',
+  headache: '頭が重い、首肩までつらい方へ。頭と首まわりのこわばりを丁寧にゆるめます。',
+}
+
 /* Moss green color constants */
 const C = {
   cream: '#f0ebe3',
@@ -130,11 +137,20 @@ export default function HomePage() {
         <section id="concern" className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.baseWarm }} aria-labelledby="concern-h">
           <div className="max-w-5xl mx-auto relative z-10">
             <ScrollReveal>
-              <SectionHeader labelEn="For Your Concerns" id="concern-h" heading={<>こんな<span className="text-glow">お悩み</span>ありませんか？</>} />
+              <div className="text-center mb-10">
+                <span className="label-sm">For Your Concerns</span>
+                <div className="botanical-line mt-5 mb-8" />
+                <h2 id="concern-h" className="font-display font-bold text-2xl sm:text-3xl md:text-[2.5rem] leading-snug">
+                  こんな<span className="text-glow">お悩み</span>、ありませんか？
+                </h2>
+                <p className="mt-6 text-[15px] sm:text-base leading-[2] font-light max-w-xl mx-auto" style={{ color: C.dim }}>
+                  睡眠の浅さ、目の疲れ、頭の重さ。日々の小さな不調を、頭からゆっくり整えていきます。
+                </p>
+              </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.15}>
-              <div className="flex items-center justify-center gap-3 flex-wrap mb-16">
+              <div className="flex items-center justify-center gap-2.5 flex-wrap mb-9">
                 {symptomTags.map(tag => (
                   <span key={tag} className="tag-pill">
                     <DecorSymbol name="diamond" size={10} className="text-senzu" />
@@ -145,31 +161,33 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.18}>
-              <div className="relative w-full max-w-md mx-auto h-48 sm:h-56 rounded-3xl overflow-hidden mb-16" style={{ border: '1px solid rgba(139,184,138,0.1)' }}>
-                <Image src="/images/treatment.jpg" alt="ドライヘッドスパの施術イメージ" fill className="object-cover" style={{ opacity: 0.9 }} sizes="(max-width: 768px) 100vw, 448px" />
+              <div className="relative w-full max-w-sm mx-auto h-40 sm:h-44 rounded-2xl overflow-hidden mb-9" style={{ border: '1px solid rgba(139,184,138,0.10)' }}>
+                <Image src="/images/treatment.jpg" alt="ドライヘッドスパの施術イメージ" fill className="object-cover" style={{ opacity: 0.82, objectPosition: 'center 55%' }} sizes="(max-width: 768px) 100vw, 384px" />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #1f2b1d66, transparent)' }} />
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.25}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {concerns.map(c => (
+              <div className="grid grid-cols-1 md:grid-cols-2 rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(139,184,138,0.14)' }}>
+                {concerns.map((c, i) => (
                   <Link key={c.slug} href={`/concerns/${c.slug}`}
-                    className="feat block group rounded-3xl p-9 sm:p-11"
-                    style={{ background: 'rgba(37,50,36,0.7)', border: '1px solid rgba(139,184,138,0.08)' }}>
+                    className={`group block p-7 sm:p-9 transition-colors bg-white/[.012] hover:bg-white/[.035] ${i < concerns.length - 1 ? 'border-b' : ''} ${i % 2 === 1 ? 'md:border-l' : ''} ${i >= 2 ? 'md:border-b-0' : ''}`}
+                    style={{ borderColor: 'rgba(139,184,138,0.12)' }}>
                     <div className="flex items-center gap-3 mb-5">
                       <Image
                         src={`/images/concerns/concern-${c.slug}.png`}
                         alt=""
                         width={64}
                         height={64}
-                        className="shrink-0"
+                        className="shrink-0 w-12 h-12 sm:w-14 sm:h-14"
                       />
                       <h3 className="font-display font-bold text-base" style={{ color: C.cream }}>{c.title}</h3>
                     </div>
-                    <p className="text-[15px] leading-[2] font-light line-clamp-3" style={{ color: C.dim }}>{c.sections[0]?.body}</p>
-                    <span className="inline-flex items-center gap-2 text-xs mt-4" style={{ color: C.sage }}>
-                      詳しく読む
+                    <p className="text-[15px] leading-[1.95] font-light line-clamp-2" style={{ color: C.dim }}>
+                      {concernSummaries[c.slug] ?? c.sections[0]?.body ?? c.metaDescription}
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-xs mt-5" style={{ color: C.sage }}>
+                      詳しく見る
                       <DecorSymbol name="arrow-right" size={14} className="transition-transform group-hover:translate-x-2" />
                     </span>
                   </Link>
