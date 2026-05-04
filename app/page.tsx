@@ -298,43 +298,66 @@ export default function HomePage() {
 
         {/* ===== ACCESS ===== */}
         <section id="access" className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.baseWarm }} aria-labelledby="access-h">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <ScrollReveal>
-              <SectionHeader labelEn="Access" id="access-h" heading={<>店舗<span className="text-glow">情報</span></>} />
+              <div className="text-center mb-14">
+                <div className="inline-flex flex-col items-center mb-8">
+                  <span className="label-sm">Access</span>
+                  <span className="mt-3 h-px w-10" style={{ background: 'linear-gradient(90deg, transparent, var(--color-senzu), transparent)' }} />
+                </div>
+                <h2 id="access-h" className="font-display font-bold text-2xl sm:text-3xl leading-snug" style={{ color: C.cream }}>
+                  店舗<span className="text-glow">情報</span>
+                </h2>
+                <p className="mt-5 font-display font-bold text-lg sm:text-xl leading-relaxed" style={{ color: C.cream }}>
+                  JR姫路駅北口から徒歩5分
+                </p>
+                <p className="mt-3 text-[15px] leading-[1.9] font-light max-w-xl mx-auto" style={{ color: C.dim }}>
+                  大手前通り沿い、呉服町のハトヤビル1階です。
+                </p>
+              </div>
             </ScrollReveal>
+
             <ScrollReveal delay={0.1}>
-              <div className="rounded-3xl p-9 sm:p-14" style={{ background: 'rgba(60,78,58,0.9)', border: '1px solid rgba(139,184,138,0.3)' }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
-                  <div className="space-y-9">
-                    <div>
-                      <p className="label-sm mb-2">店舗名</p>
-                      <p className="font-display font-bold text-base sm:text-lg leading-relaxed" style={{ color: C.cream }}>{SITE.nameShort}<br />姫路大手前通り店</p>
+              <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(37,50,36,0.28)', border: '1px solid rgba(139,184,138,0.14)' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-8 items-start">
+                  <div style={{ borderTop: '1px solid rgba(139,184,138,0.16)' }}>
+                    <div className="py-3.5" style={{ borderBottom: '1px solid rgba(139,184,138,0.12)' }}>
+                      <p className="label-sm mb-1.5">店舗名</p>
+                      <p className="font-display font-bold text-base leading-relaxed" style={{ color: C.cream }}>{SITE.nameShort}<br />姫路大手前通り店</p>
                     </div>
-                    <div>
-                      <p className="label-sm mb-2">住所</p>
-                      <address className="not-italic text-sm leading-[2] font-light" style={{ color: C.dim }}>
+                    <div className="py-3.5" style={{ borderBottom: '1px solid rgba(139,184,138,0.12)' }}>
+                      <p className="label-sm mb-1.5">住所</p>
+                      <address className="not-italic text-[15px] leading-[1.8] font-light" style={{ color: C.dim }}>
                         〒{SITE.address.postalCode}<br />
                         {SITE.address.full}
                       </address>
-                      <p className="text-[11px] mt-2 tracking-wider" style={{ color: C.faint }}>{SITE.address.access}</p>
                     </div>
-                    <div>
-                      <p className="label-sm mb-2">営業時間</p>
-                      <p className="text-sm font-light" style={{ color: C.dim }}>{SITE.hours.open} — {SITE.hours.close}<span className="ml-2 text-[11px]" style={{ color: C.faint }}>（最終受付 {SITE.hours.lastEntry}）</span></p>
+                    <div className="py-3.5" style={{ borderBottom: '1px solid rgba(139,184,138,0.12)' }}>
+                      <p className="label-sm mb-1.5">アクセス</p>
+                      <p className="font-display font-bold text-base sm:text-lg leading-relaxed" style={{ color: C.cream }}>{SITE.address.access}</p>
                     </div>
-                    <div>
-                      <p className="label-sm mb-2">定休日</p>
-                      <p className="text-sm font-light" style={{ color: C.dim }}>{SITE.hours.holiday}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2">
+                      <div className="py-3.5 sm:pr-6 border-b" style={{ borderColor: 'rgba(139,184,138,0.12)' }}>
+                        <p className="label-sm mb-2">営業時間</p>
+                        <p className="text-[15px] font-light" style={{ color: C.dim }}>{SITE.hours.open} — {SITE.hours.close}</p>
+                        <p className="text-xs mt-2" style={{ color: C.faint }}>最終受付 {SITE.hours.lastEntry}</p>
+                      </div>
+                      <div className="py-3.5 sm:pl-6 border-b sm:border-l" style={{ borderColor: 'rgba(139,184,138,0.12)' }}>
+                        <p className="label-sm mb-2">定休日</p>
+                        <p className="text-[15px] font-light" style={{ color: C.dim }}>{SITE.hours.holiday}</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="relative rounded-2xl overflow-hidden min-h-[300px]" style={{ background: C.elevated, border: '1px solid rgba(139,184,138,0.08)' }}>
+
+                  <div className="relative rounded-xl overflow-hidden min-h-[260px] md:min-h-[300px]" style={{ background: C.elevated, border: '1px solid rgba(139,184,138,0.14)' }}>
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3275.0068864254554!2d134.6891870757227!3d34.830919376214744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3554e1a1110e52f9%3A0xab2cafa12a9cf676!2z44OJ44Op44Kk44OY44OD44OJ44K544OR44K144Ot44OzIOS7meixhuOBruOBoeOBi-OCiSDlp6vot6_lpKfmiYvliY3pgJrjgorlupc!5e0!3m2!1sja!2sjp!4v1773653276556!5m2!1sja!2sjp}"
                       className="absolute inset-0 w-full h-full border-0 hover:opacity-100 transition-opacity duration-700"
-                      style={{ opacity: 0.65 }}
+                      style={{ opacity: 0.76 }}
                       allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
                       title="仙豆のちから 姫路大手前通り店の地図"
                     />
+                    <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(31,43,29,0.16), rgba(31,43,29,0.03))' }} />
                   </div>
                 </div>
               </div>
