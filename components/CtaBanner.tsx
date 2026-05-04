@@ -3,6 +3,7 @@ import { SITE } from '@/lib/site'
 export default function CtaBanner() {
   return (
     <section className="relative py-28 sm:py-36 px-6 sm:px-10 text-center overflow-hidden" style={{ background: '#faf7f2' }} aria-label="予約セクション">
+      <div className="absolute inset-x-0 top-0 h-28 pointer-events-none z-0" style={{ background: 'linear-gradient(to bottom, rgba(31,43,29,0.10), transparent)' }} />
       <div className="absolute w-[450px] h-[450px] rounded-full top-[15%] left-[25%] z-0" style={{ background: 'rgba(107,154,106,0.06)', filter: 'blur(120px)' }}></div>
       <div className="relative z-10 max-w-2xl mx-auto">
         <span className="label-sm">Reservation</span>

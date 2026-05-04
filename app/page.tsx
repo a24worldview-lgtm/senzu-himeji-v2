@@ -300,7 +300,7 @@ export default function HomePage() {
                 <div className="max-w-2xl">
                   <div className="mb-8 inline-flex flex-col items-center">
                     <span className="label-sm">Features</span>
-                    <span className="mt-3 h-px w-10" style={{ background: 'linear-gradient(90deg, transparent, var(--color-senzu), transparent)' }} />
+                    <div className="botanical-line mt-3" />
                   </div>
                   <h2 id="feat-h" className="font-display font-bold text-2xl sm:text-3xl md:text-[2.25rem] leading-[1.35]" style={{ color: C.base }}>
                     静かに休める、<br />
@@ -369,7 +369,7 @@ export default function HomePage() {
               <div className="text-center mb-14">
                 <div className="inline-flex flex-col items-center mb-8">
                   <span className="label-sm">Access</span>
-                  <span className="mt-3 h-px w-10" style={{ background: 'linear-gradient(90deg, transparent, var(--color-senzu), transparent)' }} />
+                  <div className="botanical-line mt-3" />
                 </div>
                 <h2 id="access-h" className="font-display font-bold text-2xl sm:text-3xl leading-snug" style={{ color: C.cream }}>
                   店舗<span className="text-glow">情報</span>
