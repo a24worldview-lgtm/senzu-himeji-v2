@@ -67,7 +67,7 @@ export default function HomePage() {
         <div className="absolute inset-0 z-0">
           <Image src="/images/hero.jpg" alt="仙豆のちから 店内の雰囲気" fill className="object-cover hidden sm:block" style={{ objectPosition: 'center 10%' }} priority sizes="100vw" />
           <Image src="/images/hero-sp.jpg" alt="仙豆のちから 施術風景" fill className="object-cover sm:hidden" priority sizes="100vw" />
-            <div className="absolute inset-0" style={{ background: 'rgba(26,36,24,0.55)' }} />
+            <div className="absolute inset-0" style={{ background: 'rgba(26,36,24,0.50)' }} />
             <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #1a2418 0%, rgba(26,36,24,0) 12%, transparent 50%, rgba(26,36,24,0.25) 100%)' }} />
           </div>
 
@@ -75,21 +75,21 @@ export default function HomePage() {
 
           <div className="relative z-10 text-center max-w-3xl mx-auto">
             <div className="anim-in anim-d1 mb-14">
-              <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] tracking-widest" style={{ border: '1px solid rgba(240,235,227,0.15)', background: 'rgba(240,235,227,0.05)', color: 'rgba(240,235,227,0.65)' }}>
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: C.sage }} />
+              <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] tracking-widest" style={{ border: '1px solid rgba(240,235,227,0.10)', background: 'rgba(240,235,227,0.03)', color: 'rgba(240,235,227,0.62)' }}>
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(139,184,138,0.75)' }} />
                 HIMEJI — {SITE.address.access}
               </span>
             </div>
 
             <h1 className="anim-in anim-d2 mb-10">
               <span className="heading-editorial block mb-5 text-base sm:text-lg" style={{ color: 'rgba(240,235,227,0.4)' }}>Dry Head Spa Salon</span>
-              <span className="font-display font-black text-[1.8rem] sm:text-[3.2rem] md:text-[4rem] leading-[1.15] tracking-tight block" style={{ color: C.cream }}>
+              <span className="font-display font-extrabold text-[1.75rem] sm:text-[3rem] md:text-[3.6rem] leading-[1.2] tracking-tight block" style={{ color: C.cream }}>
               がんばる毎日に、<br />
               脳から休む時間を。
               </span>
             </h1>
 
-            <p className="anim-in anim-d3 text-[15px] sm:text-base leading-[2] max-w-md mx-auto mb-14 font-light" style={{ color: C.dim }}>
+            <p className="anim-in anim-d3 text-[15px] sm:text-base leading-[2] max-w-md mx-auto mb-12 font-light" style={{ color: C.dim }}>
               水もオイルも使わない。<br />
               オールハンドの&#34;頭ほぐし&#34;で、<br />
               脳疲労をリセットする専門店。
@@ -97,8 +97,8 @@ export default function HomePage() {
 
             <div className="anim-in anim-d4 flex flex-col items-center justify-center gap-5">
               <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer"
-                 className="cta-main font-bold px-10 py-4 rounded-full text-sm hover:scale-[1.03] transition-all duration-300"
-                 style={{ background: C.sage, color: C.base, boxShadow: '0 10px 30px rgba(139,184,138,0.2)' }}>
+                 className="cta-main font-bold px-9 py-4 rounded-full text-sm hover:scale-[1.02] transition-all duration-300"
+                 style={{ background: C.sage, color: C.base, boxShadow: '0 8px 22px rgba(139,184,138,0.16)' }}>
                 空き状況を確認する
               </a>
               <a href="#about" className="text-xs tracking-wider flex items-center gap-2" style={{ color: 'rgba(240,235,227,0.45)' }}>
