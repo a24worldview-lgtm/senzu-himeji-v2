@@ -86,7 +86,7 @@ export default async function ConcernPage({ params }: { params: Promise<{ slug: 
                 </p>
                 <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer"
                    className="cta-main inline-flex items-center gap-3 bg-senzu text-base font-bold px-9 py-4 rounded-full text-sm hover:bg-senzu-glow hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-senzu/15">
-                  クーポンで予約する
+                  空き状況を確認する
                   <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 7h6M7 4l3 3-3 3"/></svg>
                 </a>
               </div>

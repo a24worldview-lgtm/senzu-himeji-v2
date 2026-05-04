@@ -54,7 +54,7 @@ export default function Header() {
               </li>
             ))}
             <li>
-              <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main inline-flex items-center gap-2 font-bold px-6 py-2.5 rounded-full text-xs" style={{ background: '#8bb88a', color: '#1a2418' }}>予約する</a>
+              <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main inline-flex items-center gap-2 font-bold px-6 py-2.5 rounded-full text-xs" style={{ background: '#8bb88a', color: '#1a2418' }}>空き状況を確認する</a>
             </li>
           </ul>
           {/* ハンバーガーボタン（開く用） */}
@@ -96,7 +96,7 @@ export default function Header() {
         {navLinks.map(l => (
           <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="text-xl font-display font-bold" style={{ color: '#f0ebe3' }} tabIndex={mobileOpen ? 0 : -1}>{l.label}</Link>
         ))}
-        <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main mt-4 font-bold px-10 py-4 rounded-full text-base" style={{ background: '#8bb88a', color: '#1a2418' }} tabIndex={mobileOpen ? 0 : -1}>予約する</a>
+        <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main mt-4 font-bold px-10 py-4 rounded-full text-base" style={{ background: '#8bb88a', color: '#1a2418' }} tabIndex={mobileOpen ? 0 : -1}>空き状況を確認する</a>
       </div>
     </>
   )

@@ -9,8 +9,8 @@ export default function CtaBanner() {
         <div className="botanical-line mt-5 mb-10"></div>
         <h2 className="font-display font-bold text-xl sm:text-2xl md:text-3xl leading-snug mb-4" style={{ color: '#8a8274' }}>最後にぐっすり眠れたのは、いつですか？</h2>
         <p className="font-display font-bold text-2xl sm:text-3xl md:text-[2.75rem] leading-snug mb-10" style={{ color: '#2a2520' }}>あなたの<span className="text-glow">「眠れた」</span>を、<br />ここから。</p>
-        <p className="text-sm leading-[2] font-light mb-14 max-w-md mx-auto" style={{ color: '#5c554b' }}>初めての方にも安心のクーポンをご用意しています。<br />まずは60分、頭のほぐし体験を。</p>
-        <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main inline-flex items-center gap-3 font-bold px-12 py-5 rounded-full text-base hover:scale-[1.03] transition-all duration-300" style={{ background: '#6b9a6a', color: '#fff', boxShadow: '0 14px 40px rgba(107,154,106,0.25)' }}>お得なクーポンで予約する</a>
+        <p className="text-[15px] leading-[2] font-light mb-14 max-w-md mx-auto" style={{ color: '#514a41' }}>初めての方にも安心のクーポンをご用意しています。<br />まずは60分、頭のほぐし体験を。</p>
+        <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer" className="cta-main inline-flex items-center gap-3 font-bold px-12 py-5 rounded-full text-base hover:scale-[1.03] transition-all duration-300" style={{ background: '#6b9a6a', color: '#fff', boxShadow: '0 14px 40px rgba(107,154,106,0.25)' }}>初回クーポンで予約する</a>
       </div>
     </section>
   )
