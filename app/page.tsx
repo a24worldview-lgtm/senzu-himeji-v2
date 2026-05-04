@@ -281,9 +281,9 @@ export default function HomePage() {
               <SectionHeader labelEn="FAQ" id="faq-h" heading={<>よくある<span className="text-glow">ご質問</span></>} />
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <Accordion iconVariant="plus-minus" items={topFaqs.map(f => ({
-                trigger: <h3 className="font-display font-bold text-[13px] sm:text-sm" style={{ color: C.cream }}>{f.question}</h3>,
-                content: <p className="text-[15px] leading-[2] font-light" style={{ color: C.dim }}>{f.answer}</p>,
+              <Accordion iconVariant="plus-minus" variant="minimal" items={topFaqs.map(f => ({
+                trigger: <h3 className="font-display font-medium text-[15px] sm:text-base" style={{ color: C.cream }}>{f.question}</h3>,
+                content: <p className="text-[15px] leading-[2] font-light" style={{ color: 'rgba(216,209,194,0.9)' }}>{f.answer}</p>,
               }))} />
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
