@@ -199,41 +199,89 @@ export default function HomePage() {
 
         {/* ===== MENU ===== */}
         <section id="menu" className="relative py-28 sm:py-36 px-6 sm:px-10" style={{ background: C.base }} aria-labelledby="menu-h">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <SectionHeader labelEn="Menu" id="menu-h" heading={<>あなたに合った<span className="text-glow">ほぐし方</span>を。</>} />
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
-              <Accordion items={menuItems.map(m => ({
-                trigger: (
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src={`/images/menu/menu-${m.iconSlug}.png`}
-                      alt=""
-                      width={96}
-                      height={96}
-                      className="shrink-0"
-                    />
-                    <div>
-                    <h3 className="font-display font-bold text-sm sm:text-base" style={{ color: C.cream }}>
-  {m.title.replace(/(\d+分)/, '').trim()}
-  <span className="text-xl sm:text-2xl font-bold ml-2" style={{ color: C.sage }}>
-    {m.title.match(/(\d+分)/)?.[0]}
-  </span>
-</h3>
-                      <p className="text-[11px] font-medium mt-1 tracking-wider" style={{ color: C.sage }}>{m.subtitle}</p>
-                    </div>
-                  </div>
-                ),
-                content: <p className="text-[15px] leading-[2] font-light" style={{ color: C.dim }}>{m.description}</p>,
-              }))} />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 items-stretch">
+                {menuItems.map((m) => {
+                  const timeLabel = m.title.match(/(\d+分)/)?.[0] ?? ''
+                  const serviceName = m.title.replace(/\d+分コース$/, '').trim()
+                  const courseMeta =
+                    m.iconSlug === '60min'
+                      ? {
+                          audience: '初めての方・睡眠を整えたい方に',
+                          summary: '頭・首肩・肩甲骨を中心に、こわばった筋肉をゆっくりほぐします。短い時間でも深く休みたい方におすすめの定番コースです。',
+                          note: '迷ったらまずはこちら',
+                        }
+                      : m.iconSlug === '75min'
+                        ? {
+                            audience: '目・首肩・脚の疲れが気になる方に',
+                            summary: '60分コースに脚まわりのケアを加え、長時間の立ち仕事やデスクワークでたまった疲労感を整えます。頭だけでなく身体の重さも気になる方に。',
+                            note: '首肩脚までじっくり',
+                          }
+                        : {
+                            audience: '全身をゆるめて深く休みたい方に',
+                            summary: '脚・腕・首肩・肩甲骨・ヘッドまで、時間をかけて丁寧にケアします。疲れを持ち越したくない日や、自分をしっかり休ませたい日に。',
+                            note: '全身をゆるめるフルコース',
+                          }
+
+                  return (
+                    <article
+                      key={m.iconSlug}
+                      className="relative h-full rounded-2xl border border-[rgba(240,235,227,0.10)] bg-white/[.035] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(139,184,138,0.24)] hover:bg-white/[.055] sm:p-6"
+                    >
+                      <div className="flex h-full flex-col">
+                        <div className="mb-4 flex min-h-[118px] items-start justify-between gap-3 sm:min-h-[124px] sm:gap-4 md:min-h-[132px]">
+                          <div className="min-w-0 flex-1 pt-0.5">
+                            <p className="mb-2 text-[12px] font-medium leading-relaxed" style={{ color: C.sage }}>
+                              {courseMeta.audience}
+                            </p>
+
+                            <h3 className="font-display font-bold text-2xl leading-tight" style={{ color: C.cream }}>
+                              {timeLabel}<span className="ml-1 text-base font-medium" style={{ color: C.dim }}>コース</span>
+                            </h3>
+
+                            <p className="mt-2 text-[12px] font-medium leading-relaxed tracking-wide" style={{ color: C.faint }}>
+                              {serviceName}
+                            </p>
+                          </div>
+                          <div className="flex h-[72px] w-[72px] shrink-0 items-start justify-center sm:h-[84px] sm:w-[84px] md:h-24 md:w-24 lg:h-28 lg:w-28">
+                            <Image
+                              src={`/images/menu/menu-${m.iconSlug}.png`}
+                              alt=""
+                              width={112}
+                              height={112}
+                              className="h-full w-full object-contain opacity-85"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="my-4 h-px w-full" style={{ background: 'rgba(240,235,227,0.10)' }} />
+
+                        <p className="flex-1 text-[15px] leading-[1.85] font-light" style={{ color: C.dim }}>
+                          {courseMeta.summary}
+                        </p>
+
+                        <p className="mt-4 text-[13px] leading-relaxed font-medium" style={{ color: 'rgba(139,184,138,0.88)' }}>
+                          {courseMeta.note}
+                        </p>
+                      </div>
+                    </article>
+                  )
+                })}
+              </div>
             </ScrollReveal>
             <ScrollReveal delay={0.25}>
               <div className="text-center mt-14">
+                <p className="mb-6 text-[12px] leading-relaxed font-light" style={{ color: 'rgba(216,209,194,0.68)' }}>
+                  最新のメニュー・空き状況はHot Pepperでご確認ください。
+                </p>
                 <a href={SITE.hotpepperCoupon} target="_blank" rel="noopener noreferrer"
                    className="cta-main inline-flex items-center gap-3 font-bold px-9 py-4 rounded-full text-sm hover:scale-[1.03] transition-all duration-300"
                    style={{ background: C.sage, color: C.base, boxShadow: '0 10px 30px rgba(139,184,138,0.2)' }}>
-                  空き状況を確認する
+                  メニューと空き状況を見る
                   <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 7h6M7 4l3 3-3 3"/></svg>
                 </a>
               </div>
