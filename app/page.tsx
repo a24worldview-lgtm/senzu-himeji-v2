@@ -384,8 +384,8 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <div className="rounded-2xl p-6 sm:p-8" style={{ background: 'rgba(37,50,36,0.28)', border: '1px solid rgba(139,184,138,0.14)' }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-8 items-start">
+              <div className="rounded-2xl p-6 sm:p-7 sm:pb-6" style={{ background: 'rgba(37,50,36,0.28)', border: '1px solid rgba(139,184,138,0.14)' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-7 items-stretch">
                   <div style={{ borderTop: '1px solid rgba(139,184,138,0.16)' }}>
                     <div className="py-3.5" style={{ borderBottom: '1px solid rgba(139,184,138,0.12)' }}>
                       <p className="label-sm mb-1.5">店舗名</p>
@@ -415,9 +415,9 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="relative rounded-xl overflow-hidden min-h-[260px] md:min-h-[300px]" style={{ background: C.elevated, border: '1px solid rgba(139,184,138,0.14)' }}>
+                  <div className="relative rounded-xl overflow-hidden min-h-[320px] md:min-h-[360px]" style={{ background: C.elevated, border: '1px solid rgba(139,184,138,0.14)' }}>
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3275.0068864254554!2d134.6891870757227!3d34.830919376214744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3554e1a1110e52f9%3A0xab2cafa12a9cf676!2z44OJ44Op44Kk44OY44OD44OJ44K544OR44K144Ot44OzIOS7meixhuOBruOBoeOBi-OCiSDlp6vot6_lpKfmiYvliY3pgJrjgorlupc!5e0!3m2!1sja!2sjp!4v1773653276556!5m2!1sja!2sjp}"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3275.0068864254554!2d134.6891870757227!3d34.830919376214744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3554e1a1110e52f9%3A0xab2cafa12a9cf676!2z44OJ44Op44Kk44OY44OD44OJ44K544OR44K144Ot44OzIOS7meixhuOBruOBoeOBi-OCiSDlp6vot6_lpKfmiYvliY3pgJrjgorlupc!5e0!3m2!1sja!2sjp!4v1773653276556!5m2!1sja!2sjp"
                       className="absolute inset-0 w-full h-full border-0 hover:opacity-100 transition-opacity duration-700"
                       style={{ opacity: 0.76 }}
                       allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
