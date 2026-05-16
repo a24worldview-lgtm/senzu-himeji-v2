@@ -25,8 +25,8 @@ const jobPostingJsonLd = {
     name: 'SUNZfactory株式会社',
     value: 'senzu-himeji-therapist-2026',
   },
-  datePosted: '2026-04-20',
-  validThrough: '2026-12-31T23:59',
+  datePosted: '2026-05-16',
+  validThrough: '2026-06-15T23:59',
   employmentType: 'PART_TIME',
   hiringOrganization: {
     '@type': 'Organization',
